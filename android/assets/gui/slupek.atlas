@@ -1,0 +1,20 @@
+
+slupek.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+slupek
+  rotate: false
+  xy: 143, 9
+  size: 37, 79
+  orig: 37, 79
+  offset: 0, 0
+  index: -1
+tabliczka
+  rotate: false
+  xy: 2, 2
+  size: 139, 86
+  orig: 139, 86
+  offset: 0, 0
+  index: -1

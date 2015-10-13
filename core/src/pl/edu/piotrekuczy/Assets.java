@@ -26,6 +26,7 @@ public class Assets {
 	// GUI
 	 public static final String scena = "bitmaps/scena.png";
 	 public static final String panel = "bitmaps/panel.png";
+	 public static final String mapa = "gui/mapa.png";
 	 
 	// // BACKGROUND
 	// public static final String backgroundChecker =
@@ -70,6 +71,7 @@ public class Assets {
 		 
 		 manager.load(scena, Texture.class);
 		 manager.load(panel, Texture.class);
+		 manager.load(mapa, Texture.class);
 
 		// manager.load(uiskinAtlas, TextureAtlas.class);
 		// manager.load(backgroundChecker, Texture.class);

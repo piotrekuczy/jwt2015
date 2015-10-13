@@ -30,6 +30,16 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class Gamescreen implements Screen {
 
+	// gamescreen states
+
+	public enum GameState {
+		TITLE, MAP, ARENA, GAMEOVER;
+	}
+
+	private GameState currentState;
+
+	// main game class
+
 	Jamwteatrze game;
 
 	// renderers
@@ -51,6 +61,7 @@ public class Gamescreen implements Screen {
 	// Animation diceStandardAnimation;
 
 	// gameplay
+
 	int pulaGracza, pulaPrzeciwnika = 0;
 	boolean heroTurn = true;
 	boolean rolled = false;
@@ -80,16 +91,20 @@ public class Gamescreen implements Screen {
 	// gui
 
 	BitmapFont font;
-	Texture scena, panel;
-	
-	
+	Texture scena, panel, mapa;
+	SpineActor slupek;
+
 	SpineActor spineact;
-	
 
 	// constructor
 	public Gamescreen(Jamwteatrze game) {
 
 		this.game = game;
+
+		// set game state
+		// currentState = GameState.TITLE;
+		currentState = GameState.MAP;
+		// currentState = GameState.ARENA;
 
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera(1280, 720);
@@ -124,6 +139,15 @@ public class Gamescreen implements Screen {
 		scena.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		panel = Assets.manager.get(Assets.panel, Texture.class);
 		panel.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		mapa = Assets.manager.get(Assets.mapa, Texture.class);
+		mapa.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
+		slupek = new SpineActor(batch, sr, "gui/slupek", "in", "idle");
+		slupek.setTouchable(Touchable.enabled);
+		slupek.debug();
+		slupek.setPosition(640, 450);
+		// slupek.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
+		stage.addActor(slupek);
 
 		// DICES
 
@@ -147,6 +171,8 @@ public class Gamescreen implements Screen {
 
 		for (Dice dice : heroDices) {
 			dice.debug();
+			dice.setTouchable(Touchable.disabled);
+			dice.setVisible(false);
 			stage.addActor(dice);
 		}
 
@@ -168,18 +194,13 @@ public class Gamescreen implements Screen {
 			dice.debug();
 			stage.addActor(dice);
 		}
-		
-		
-		spineact = new SpineActor(batch, sr);
-//		spineact.setPosition(100, 0);
-//		spineact.setWidth(10);
-//		spineact.setHeight(10);
-//		spineact.setScale(2f);
-		spineact.setTouchable(Touchable.enabled);
-		spineact.debug();
-		spineact.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
-		stage.addActor(spineact);
-		
+
+//		spineact = new SpineActor(batch, sr, "characters/template");
+//		spineact.setTouchable(Touchable.disabled);
+//		spineact.setVisible(false);
+//		spineact.debug();
+//		spineact.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
+//		stage.addActor(spineact);
 	}
 
 	@Override
@@ -187,17 +208,43 @@ public class Gamescreen implements Screen {
 		System.out.println("jwt game screen show method");
 	}
 
-	@Override
-	public void render(float delta) {
-		cameraInput();
+	public void gamestates() {
+		switch (currentState) {
+		case TITLE:
+			updateTitle(Gdx.graphics.getDeltaTime());
+			break;
+		case MAP:
+			updateMap(Gdx.graphics.getDeltaTime());
+			break;
+		case ARENA:
+			updateArena(Gdx.graphics.getDeltaTime());
+			break;
+		case GAMEOVER:
+			// updateReady(delta);
+			break;
+		default:
+			// updateRunning(delta);
+			break;
+		}
+	}
 
-		camera.update();
-		batch.setProjectionMatrix(camera.combined);
-		dr.getShapeRenderer().setProjectionMatrix(camera.combined);
+	public void updateMap(float delta) {
+		// draw background
+		// draw map
+		batch.begin();
+		batch.draw(mapa, (Gdx.graphics.getWidth() / 2) - (mapa.getWidth() / 2), 100);
+		batch.end();
+		// draw slupki objects
+		stage.act(delta);
+		stage.draw();
+	}
 
-		Gdx.graphics.getGL20().glClearColor(1, 0, 0, 1);
-		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+	public void updateTitle(float delta) {
+		// draw title and credits
+	}
 
+	public void updateArena(float delta) {
+		// System.out.println("update arena");
 		batch.begin();
 		batch.draw(scena, 0, 0);
 		batch.draw(panel, 20, 10);
@@ -227,8 +274,20 @@ public class Gamescreen implements Screen {
 		} else {
 			generateEnemyDices();
 		}
+	}
 
-		// System.out.println("pula gracza= " + pulaGracza);
+	@Override
+	public void render(float delta) {
+		cameraInput();
+
+		camera.update();
+		batch.setProjectionMatrix(camera.combined);
+		dr.getShapeRenderer().setProjectionMatrix(camera.combined);
+
+		Gdx.graphics.getGL20().glClearColor(1, 0, 0, 1);
+		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+		gamestates();
 	}
 
 	@Override
@@ -382,7 +441,7 @@ public class Gamescreen implements Screen {
 			}
 		}
 		// po 2 sec wylosuj pierwsza kostke
-		if (enemyOne==true && enemyTwo == false && enemyTurnTimer >= 2) {
+		if (enemyOne == true && enemyTwo == false && enemyTurnTimer >= 2) {
 			if (!enemyFail) {
 				enemyDices.get(1).setStopklatka(true);
 				if (enemyDices.get(1).numerKlatki != 1) {
@@ -401,11 +460,12 @@ public class Gamescreen implements Screen {
 			}
 		}
 		// po 3 sec swapnij ture (wlasc. zaatakuj)
-		if (enemyOne==true && enemyTwo==true && enemyTurnTimer >= 3) {
+		if (enemyOne == true && enemyTwo == true && enemyTurnTimer >= 3) {
 			if (!enemyFail) {
-				
-				// TUTAJ DOPISAC ZE MA MIEC WYBOR MIEDZY DALSZYM LOSOWANIEM A ATAKIEM
-				
+
+				// TUTAJ DOPISAC ZE MA MIEC WYBOR MIEDZY DALSZYM LOSOWANIEM A
+				// ATAKIEM
+
 				// atakuj
 				System.out.println("ATAK");
 				swapTury();
@@ -416,10 +476,10 @@ public class Gamescreen implements Screen {
 			}
 		}
 		// po 4 sec swapnij ture jesli enemy wylosowal na drugiej roll
-				if (enemyOne==true && enemyTwo==true && enemyFail==true && enemyTurnTimer >= 4) {
-					System.out.println("koniec cyklu generowania enemy");
-					swapTury();
-				}
+		if (enemyOne == true && enemyTwo == true && enemyFail == true && enemyTurnTimer >= 4) {
+			System.out.println("koniec cyklu generowania enemy");
+			swapTury();
+		}
 	}
 
 	private void checkHeroDices() {
