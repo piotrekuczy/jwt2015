@@ -1,0 +1,85 @@
+{
+"skeleton": { "hash": "Ek0EnYlwcuV0MvGPPNqyVNDgLtc", "spine": "2.1.27", "width": 139.01, "height": 167.02, "images": "./toSpine/images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "tlow", "parent": "root", "length": 49.16, "x": 0.2, "y": 0.26, "rotation": 90.45 },
+	{ "name": "glowa", "parent": "tlow", "length": 122.22, "x": 49.15, "y": -0.83, "rotation": -0.45 },
+	{ "name": "reka", "parent": "tlow", "length": 94.12, "x": 43.79, "y": 5.51, "rotation": -72.1 }
+],
+"slots": [
+	{ "name": "glowa", "bone": "glowa", "attachment": "glowa" },
+	{ "name": "tlow", "bone": "tlow", "attachment": "tlow" },
+	{ "name": "reka", "bone": "reka", "attachment": "reka" }
+],
+"skins": {
+	"default": {
+		"glowa": {
+			"glowa": { "x": 56.29, "y": -7.52, "rotation": -89.99, "width": 124, "height": 119 }
+		},
+		"reka": {
+			"reka": { "x": 42.46, "y": -8.06, "rotation": -18.34, "width": 96, "height": 55 }
+		},
+		"tlow": {
+			"tlow": { "x": 24.94, "y": -1.17, "rotation": -90.45, "width": 62, "height": 54 }
+		}
+	}
+},
+"animations": {
+	"attack": {
+		"bones": {
+			"reka": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 114.46 },
+					{ "time": 0.3333, "angle": -38.38 },
+					{ "time": 0.5, "angle": 114.46 },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"glowa": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 16.13 },
+					{ "time": 0.3333, "angle": -34.48 },
+					{ "time": 0.5, "angle": 16.13 },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"tlow": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 9.29 },
+					{ "time": 0.3333, "angle": -3.75 },
+					{ "time": 0.5, "angle": 9.29 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.1666, "x": 1.122, "y": 1 },
+					{ "time": 0.3333, "x": 0.921, "y": 1 },
+					{ "time": 0.5, "x": 1.122, "y": 1 },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"root": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 9.29 },
+					{ "time": 0.3333, "angle": -3.75 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"bones": {
+			"tlow": {
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.3333, "x": 0.881, "y": 1 },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			}
+		}
+	}
+}
+}

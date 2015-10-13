@@ -1,0 +1,27 @@
+
+template.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+glowa
+  rotate: false
+  xy: 2, 2
+  size: 124, 119
+  orig: 124, 119
+  offset: 0, 0
+  index: -1
+reka
+  rotate: false
+  xy: 128, 66
+  size: 96, 55
+  orig: 96, 55
+  offset: 0, 0
+  index: -1
+tlow
+  rotate: false
+  xy: 128, 10
+  size: 62, 54
+  orig: 62, 54
+  offset: 0, 0
+  index: -1
