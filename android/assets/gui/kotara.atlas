@@ -1,0 +1,157 @@
+
+kotara.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+l1
+  rotate: false
+  xy: 2, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+l2
+  rotate: false
+  xy: 2, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+l3
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+l4
+  rotate: false
+  xy: 634, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+
+kotara2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+l5
+  rotate: false
+  xy: 2, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+l6
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+l7
+  rotate: false
+  xy: 634, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+
+kotara3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+l8
+  rotate: false
+  xy: 2, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p1
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p8
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p7
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p3
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p5
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p2
+  rotate: false
+  xy: 318, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p4
+  rotate: false
+  xy: 634, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+p6
+  rotate: false
+  xy: 634, 2
+  size: 314, 924
+  orig: 314, 924
+  offset: 0, 0
+  index: -1
+
+kotara4.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+welon1
+  rotate: false
+  xy: 2, 456
+  size: 804, 167
+  orig: 804, 167
+  offset: 0, 0
+  index: -1
+welon2
+  rotate: false
+  xy: 2, 229
+  size: 524, 225
+  orig: 524, 225
+  offset: 0, 0
+  index: -1
+welon3
+  rotate: false
+  xy: 2, 2
+  size: 524, 225
+  orig: 524, 225
+  offset: 0, 0
+  index: -1

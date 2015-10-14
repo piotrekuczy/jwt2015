@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -21,6 +20,12 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.esotericsoftware.spine.AnimationState;
+import com.esotericsoftware.spine.Animation;
+import com.esotericsoftware.spine.AnimationStateData;
+import com.esotericsoftware.spine.Skeleton;
+import com.esotericsoftware.spine.SkeletonData;
+import com.esotericsoftware.spine.SkeletonJson;
 import com.esotericsoftware.spine.SkeletonRenderer;
 import com.esotericsoftware.spine.SkeletonRendererDebug;
 import com.badlogic.gdx.utils.Timer;
@@ -52,13 +57,9 @@ public class Gamescreen implements Screen {
 	OrthographicCamera camera;
 	Viewport viewport;
 	Boolean fullscreen = false;
-	// private float rotationSpeed = 0.5f;
 
 	// stage
 	Stage stage;
-
-	// animations
-	// Animation diceStandardAnimation;
 
 	// gameplay
 
@@ -93,6 +94,17 @@ public class Gamescreen implements Screen {
 	BitmapFont font;
 	Texture scena, panel, mapa;
 	SpineActor slupek;
+	SpineButton title;
+	
+	// kotara
+
+	TextureAtlas kotaraAtlas;
+	SkeletonJson kotaraJson;
+	SkeletonData kotaraSkeletonData;
+	Skeleton kotaraSkeleton;
+	Animation kotaraIdleAnimation;
+	AnimationState kotaraState;
+	float kotaraAnimationTime = 0;
 
 	SpineActor spineact;
 
@@ -102,8 +114,9 @@ public class Gamescreen implements Screen {
 		this.game = game;
 
 		// set game state
-		// currentState = GameState.TITLE;
-		currentState = GameState.MAP;
+
+		currentState = GameState.TITLE;
+		// currentState = GameState.MAP;
 		// currentState = GameState.ARENA;
 
 		batch = new SpriteBatch();
@@ -142,8 +155,11 @@ public class Gamescreen implements Screen {
 		mapa = Assets.manager.get(Assets.mapa, Texture.class);
 		mapa.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
+		// slupek do mapy
+		
 		slupek = new SpineActor(batch, sr, "gui/slupek", "in", "idle");
-		slupek.setTouchable(Touchable.enabled);
+		slupek.setTouchable(Touchable.disabled);
+		slupek.setVisible(false);
 		slupek.debug();
 		slupek.setPosition(640, 450);
 		// slupek.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
@@ -195,12 +211,32 @@ public class Gamescreen implements Screen {
 			stage.addActor(dice);
 		}
 
-//		spineact = new SpineActor(batch, sr, "characters/template");
-//		spineact.setTouchable(Touchable.disabled);
-//		spineact.setVisible(false);
-//		spineact.debug();
-//		spineact.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
-//		stage.addActor(spineact);
+		// spineact = new SpineActor(batch, sr, "characters/template");
+		// spineact.setTouchable(Touchable.disabled);
+		// spineact.setVisible(false);
+		// spineact.debug();
+		// spineact.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
+		// stage.addActor(spineact);
+		
+		// kotara
+		
+		kotaraAtlas = new TextureAtlas(Gdx.files.internal("gui/kotara.atlas"));
+		kotaraJson = new SkeletonJson(kotaraAtlas);
+		kotaraSkeletonData = kotaraJson.readSkeletonData(Gdx.files.internal("gui/kotara.json"));
+		kotaraSkeleton = new Skeleton(kotaraSkeletonData);
+		kotaraIdleAnimation = kotaraSkeletonData.findAnimation("idle");
+		AnimationStateData stateData = new AnimationStateData(kotaraSkeletonData);
+		kotaraState = new AnimationState(stateData);
+		kotaraState.addAnimation(0, "idle",true, 0);
+		kotaraSkeleton.setPosition(-200, -150);
+		
+		// title
+		
+		title = new SpineButton(batch, sr, "gui/title", "idle",100,0,800,600);
+		title.setPosition(250, 900);
+		title.addAction(moveTo(250, 100, 2.0f, Interpolation.bounceOut));
+		title.debug();
+		stage.addActor(title);
 	}
 
 	@Override
@@ -240,7 +276,16 @@ public class Gamescreen implements Screen {
 	}
 
 	public void updateTitle(float delta) {
-		// draw title and credits
+		// draw kotara
+		batch.begin();
+		kotaraState.update(Gdx.graphics.getDeltaTime());
+		kotaraState.apply(kotaraSkeleton);
+		kotaraSkeleton.updateWorldTransform();
+		sr.draw(batch, kotaraSkeleton);
+		batch.end();
+		// draw title and credits title jest spine actorem - po kliknieciu na niego mienia sie stan gry
+		stage.act(delta);
+		stage.draw();
 	}
 
 	public void updateArena(float delta) {
@@ -284,7 +329,7 @@ public class Gamescreen implements Screen {
 		batch.setProjectionMatrix(camera.combined);
 		dr.getShapeRenderer().setProjectionMatrix(camera.combined);
 
-		Gdx.graphics.getGL20().glClearColor(1, 0, 0, 1);
+		Gdx.graphics.getGL20().glClearColor(0, 0, 0, 1);
 		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		gamestates();
@@ -559,42 +604,5 @@ public class Gamescreen implements Screen {
 
 	}
 
-	public Animation makeAnim(TextureAtlas atlasName, String regionName, int frameNumber, float speed,
-			String playType) {
 
-		Array<AtlasRegion[]> klatki = new Array<AtlasRegion[]>(); // tablica z
-																	// klatkami
-		Array<Animation> animacje = new Array<Animation>(); // tablica z
-															// animacjami
-
-		klatki.add(new AtlasRegion[frameNumber]); // zrob tablice z iloscia
-													// klatek
-
-		for (int c = 0; c < frameNumber; c++) {
-			klatki.peek()[c] = atlasName.findRegion(regionName + String.format("%02d", c + 1));
-		}
-
-		animacje.add(new Animation(speed, klatki.peek())); // zrob animacje
-
-		if (playType == "NORMAL") {
-			animacje.peek().setPlayMode(Animation.PlayMode.NORMAL);
-		}
-		if (playType == "LOOP") {
-			animacje.peek().setPlayMode(Animation.PlayMode.LOOP);
-		}
-		if (playType == "LOOP_PINGPONG") {
-			animacje.peek().setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-		}
-		if (playType == "LOOP_RANDOM") {
-			animacje.peek().setPlayMode(Animation.PlayMode.LOOP_RANDOM);
-		}
-		if (playType == "REVERSED") {
-			animacje.peek().setPlayMode(Animation.PlayMode.REVERSED);
-		}
-		if (playType == "LOOP_REVERSED") {
-			animacje.peek().setPlayMode(Animation.PlayMode.LOOP_REVERSED);
-		}
-
-		return animacje.peek();
-	}
 }
