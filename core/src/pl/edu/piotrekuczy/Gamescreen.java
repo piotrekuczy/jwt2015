@@ -78,6 +78,8 @@ public class Gamescreen implements Screen {
 	boolean enemyOne, enemyTwo = false;
 	// enemy zrollowal
 	boolean enemyFail = false;
+	boolean gameover = false;
+	boolean atakowanie = false;
 	// SWIATY
 	private Array<Swiat> swiaty;
 
@@ -151,7 +153,7 @@ public class Gamescreen implements Screen {
 		stage = new Stage(viewport, batch);
 		stageCharacters = new Stage(viewport, batch);
 		Gdx.input.setInputProcessor(stage);
-		
+
 		// atakuj button
 		atakujTex = Assets.manager.get(Assets.atakuj, Texture.class);
 		atakujTex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -159,12 +161,15 @@ public class Gamescreen implements Screen {
 		atakujButton.setPosition(565, -200);
 		atakujButton.addListener(new InputListener() {
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("atakuj button pressed");
-				atakuj();
+				if (pulaGracza > 0 && !atakowanie) {
+					atakowanie = true;
+					System.out.println("atakuj button pressed");
+					atakuj();
+				}
 				return true;
 			}
 		});
-		
+
 		stage.addActor(atakujButton);
 
 		// spine
@@ -182,7 +187,7 @@ public class Gamescreen implements Screen {
 		scena.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		panel = Assets.manager.get(Assets.panel, Texture.class);
 		panel.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
+
 		// tla
 
 		swiat02tlo = Assets.manager.get(Assets.swiat02tlo, Texture.class);
@@ -298,13 +303,30 @@ public class Gamescreen implements Screen {
 		}
 	}
 
-	public void atakuj(){
+	public void setInitialValues() {
+		heroTurn = true;
+		rolled = false;
+		// ktory raz losuje enemy
+		enemyOne = false;
+		enemyTwo = false;
+		// enemy zrollowal
+		enemyFail = false;
+		gameover = false;
+		atakowanie = false;
+		pozwolSchowac = false;
+		title.setClicked(false);
+		mapa.setClicked(false);
+//		if (!mapa.isClicked() && pozwolSchowac) {
+	}
+
+	public void atakuj() {
 		// odejmij punkty przeciwnikowi
 		swiaty.get(level).getQuesty().get(0).getEnemys().get(0)
 				.setHp(swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getHp() - pulaGracza);
 		;
 		swapTury();
 	}
+
 	public void generateGameplay() {
 		// generuj swiaty
 		// tablica swiatow (0123)
@@ -313,7 +335,7 @@ public class Gamescreen implements Screen {
 		swiaty.add(new Swiat());
 		swiaty.add(new Swiat());
 		swiaty.add(new Swiat());
-		System.out.println("ilosc swiatow w grze =" + swiaty.size);
+//		System.out.println("ilosc swiatow w grze =" + swiaty.size);
 		// ustawienie danych questow
 		swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest1"));
 		swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest2"));
@@ -333,17 +355,17 @@ public class Gamescreen implements Screen {
 		for (Swiat swiat : swiaty) {
 			// wydrukuj nazwy questow
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
-				System.out.println(swiat.getQuesty().get(i).questName);
+//				System.out.println(swiat.getQuesty().get(i).questName);
 			}
 			// dla kazdego questa dodaj gorala
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				swiat.getQuesty().get(i).getHeroes()
-						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 40));
+						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 5));
 			}
 			// dla kazdego questa dodaj owce
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				swiat.getQuesty().get(i).getEnemys()
-						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 40));
+						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 500));
 			}
 		}
 		// // generowanie gorali do kazdego questa
@@ -355,6 +377,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void resetTitle() {
+		gameover = false;
 		title.setPosition(250, 900);
 		if (currentState == GameState.TITLE) {
 			title.addAction(moveTo(200, 20, 2.0f, Interpolation.bounceOut));
@@ -409,6 +432,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void fadeOutMapa(float daleta) {
+		
 		if (!mapa.isClicked() && pozwolSchowac) {
 			mapa.setClicked(true);
 			// schowaj mape
@@ -436,6 +460,31 @@ public class Gamescreen implements Screen {
 			// dice.setVisible(true);
 			// }
 		}
+	}
+
+	public void fadeOutArena() {
+		// wyjeb kostki
+		for (Dice dice : heroDices) {
+			dice.setStopklatka(false);
+			dice.setTouchable(Touchable.disabled);
+			dice.addAction(moveTo(dice.getX(), -200, 1.0f, Interpolation.fade));
+		}
+
+		// wyjeb atakuj
+		atakujButton.addAction(moveTo(565, -200, 1.0f, Interpolation.fade));
+		// zamknij kotare
+		kotaraState.setAnimation(0, "close", false);
+		if (kotaraState.getCurrent(0) == null) {
+			System.out.println("kotara sie zamknela");
+		}
+		// poka title
+		setInitialValues();
+		currentState = GameState.TITLE;
+		title.setClicked(false);
+		mapa.setClicked(false);
+		generateGameplay();
+		pozwolSchowac = false;
+		resetTitle();
 	}
 
 	public void fadeOutTitle(float delta) {
@@ -493,7 +542,6 @@ public class Gamescreen implements Screen {
 		batch.end();
 		// sprawdz czy kotara sie odslonila
 		if (kotaraState.getCurrent(0) == null) {
-			System.out.println("DZIOBAK");
 			currentState = GameState.MAP;
 		}
 		stage.act(delta);
@@ -502,9 +550,17 @@ public class Gamescreen implements Screen {
 
 	public void updateArena(float delta) {
 		// System.out.println("update arena");
-
+		// check for deleting enemy from quest
+		if (swiaty.get(0).getQuesty().get(0).getEnemys().size > 0) {
+			for (int i = 0; i < swiaty.get(0).getQuesty().get(0).getEnemys().size; i++) {
+				if (swiaty.get(0).getQuesty().get(0).getEnemys().get(i).isDeleted()) {
+					swiaty.get(0).getQuesty().get(0).getEnemys().get(i).remove();
+					swiaty.get(0).getQuesty().get(0).getEnemys().removeIndex(i);
+					System.out.println("enemy zostal zabity!");
+				}
+			}
+		}
 		// check for deleting hero from quest
-
 		if (swiaty.get(0).getQuesty().get(0).getHeroes().size > 0) {
 			for (int i = 0; i < swiaty.get(0).getQuesty().get(0).getHeroes().size; i++) {
 				if (swiaty.get(0).getQuesty().get(0).getHeroes().get(i).isDeleted()) {
@@ -513,6 +569,18 @@ public class Gamescreen implements Screen {
 					System.out.println("hero zostal zabity!");
 				}
 			}
+		}
+
+		// check for gameover
+		if (swiaty.get(level).getQuesty().get(0).getHeroes().size <= 0 && !gameover) {
+			gameover = true;
+			System.out.println("zdechli wszyscy bohaterowie i powinien wyskoczyc title");
+			fadeOutArena();
+		}
+
+		// check for VICTORY!
+		if (swiaty.get(level).getQuesty().get(0).getEnemys().size <= 0) {
+			System.out.println("VICTORY . odpal nastepny quest!");
 		}
 
 		batch.begin();
@@ -534,12 +602,14 @@ public class Gamescreen implements Screen {
 		stageCharacters.draw();
 
 		// rysowanie paskow hp
+		shpr.begin(ShapeType.Filled);
 		if (swiaty.get(0).getQuesty().get(0).getHeroes().size > 0) {
-			shpr.begin(ShapeType.Filled);
 			swiaty.get(0).getQuesty().get(0).getHeroes().get(0).renderHp(shpr);
-			swiaty.get(0).getQuesty().get(0).getEnemys().get(0).renderHp(shpr);
-			shpr.end();
 		}
+		if (swiaty.get(0).getQuesty().get(0).getEnemys().size > 0) {
+			swiaty.get(0).getQuesty().get(0).getEnemys().get(0).renderHp(shpr);
+		}
+		shpr.end();
 
 		// draw kotara
 		batch.begin();
@@ -693,6 +763,7 @@ public class Gamescreen implements Screen {
 			enemyOne = false;
 			enemyTwo = false;
 			enemyFail = false;
+			atakowanie = false;
 			for (Dice dice : heroDices) {
 				dice.addAction(moveTo(dice.getX(), -150, 0.2f, Interpolation.linear));
 				dice.setStopklatka(true);
@@ -724,6 +795,7 @@ public class Gamescreen implements Screen {
 				// enemy wylosowal 1
 				enemyOne = true;
 				enemyFail = true;
+				atakowanie = false;
 			}
 		}
 		// po 2 sec wylosuj druga kostke
@@ -743,6 +815,7 @@ public class Gamescreen implements Screen {
 				System.out.println("enemy roll na pierwszej");
 				pulaGracza = 0;
 				pulaPrzeciwnika = 0;
+				atakowanie = false;
 				swapTury();
 			}
 		}
@@ -834,9 +907,10 @@ public class Gamescreen implements Screen {
 				Gdx.graphics.setDisplayMode(1280, 720, false);
 			}
 		}
-		// if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-		// camera.zoom += 0.02;
-		// }
+		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+			// camera.zoom += 0.02;
+			kotaraState.setAnimation(0, "close", false);
+		}
 		// if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
 		// camera.zoom -= 0.02;
 		// }

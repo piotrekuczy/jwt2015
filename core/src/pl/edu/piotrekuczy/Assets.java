@@ -60,7 +60,7 @@ public class Assets {
 
 	public static void load() {
 		
-		System.out.println("asset manager load method");
+//		System.out.println("asset manager load method");
 		
 		// DICES
 		 manager.load(diceStandardAtlas, TextureAtlas.class);
