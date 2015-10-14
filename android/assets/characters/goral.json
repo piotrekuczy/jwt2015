@@ -1,0 +1,452 @@
+{
+"skeleton": { "hash": "MBMxXV62va9TRpt/FfA9zI98cQI", "spine": "2.1.27", "width": 261.8, "height": 212.89, "images": "./images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "pas", "parent": "root", "length": 10.51, "x": 3.65, "y": 57.89, "rotation": -90 },
+	{ "name": "srodek", "parent": "root", "length": 74.16, "x": -0.42, "y": 57.31, "rotation": 90 },
+	{ "name": "ramie lewe", "parent": "srodek", "length": 48.55, "x": 71.24, "y": 36.79, "rotation": 176.84 },
+	{ "name": "ramie prawe", "parent": "srodek", "length": 50.46, "x": 67.74, "y": -46.13, "rotation": -155.03 },
+	{ "name": "ryj", "parent": "srodek", "length": 47.53, "x": 77.08, "y": 5.83, "rotation": -26.02 },
+	{ "name": "udo lewe", "parent": "pas", "length": 23, "x": 12.84, "y": -14.01, "rotation": -23.79 },
+	{ "name": "udo prawe", "parent": "pas", "length": 33, "x": 6.42, "y": 10.51, "rotation": 13.39 },
+	{ "name": "kap sr", "parent": "ryj", "length": 30.28, "x": 45.25, "y": 7.14, "rotation": -24.17 },
+	{ "name": "piszczel lewe", "parent": "udo lewe", "length": 17.76, "x": 18.9, "y": -3.8, "rotation": 51 },
+	{ "name": "piszczel prawa", "parent": "udo prawe", "length": 14.11, "x": 25.94, "y": -1.97, "rotation": 10.7 },
+	{ "name": "przedramie lewe", "parent": "ramie lewe", "length": 26.63, "x": 52.67, "y": -0.6, "rotation": -49.1 },
+	{ "name": "przedramie prawe", "parent": "ramie prawe", "length": 31.26, "x": 46.72, "y": 1.74, "rotation": -56.83 },
+	{ "name": "lapka copy", "parent": "przedramie lewe", "length": 16.81, "x": 29.55, "y": 0.01, "rotation": -17.19 },
+	{ "name": "piorko copy", "parent": "kap sr", "length": 55.18, "x": 23.1, "y": -35.21 },
+	{ "name": "prawa reka", "parent": "przedramie prawe", "length": 23.31, "x": 32.7, "y": -1.03, "rotation": -34.71 },
+	{ "name": "stopa lewe", "parent": "piszczel lewe", "length": 22.9, "x": 19.82, "y": -2.31, "rotation": -97.62 },
+	{ "name": "stopa prawa", "parent": "piszczel prawa", "length": 10.72, "x": 15.95, "y": -0.09, "rotation": -85.04 },
+	{ "name": "bron", "parent": "lapka copy", "length": 168.76, "x": 12.09, "y": 2.32, "rotation": -79.29 }
+],
+"slots": [
+	{ "name": "lapka copy", "bone": "lapka copy", "attachment": "lapka copy" },
+	{ "name": "srodek", "bone": "srodek", "attachment": "srodek" },
+	{ "name": "przedramie lewe", "bone": "przedramie lewe", "attachment": "przedramie lewe" },
+	{ "name": "ramie lewe", "bone": "ramie lewe", "attachment": "ramie lewe" },
+	{ "name": "bron", "bone": "bron", "attachment": "bron" },
+	{ "name": "palce lewe", "bone": "lapka copy", "attachment": "palce lewe" },
+	{ "name": "stopa lewe", "bone": "stopa lewe", "attachment": "stopa lewe" },
+	{ "name": "piszczel lewe", "bone": "piszczel lewe", "attachment": "piszczel lewe" },
+	{ "name": "udo lewe", "bone": "udo lewe", "attachment": "udo lewe" },
+	{ "name": "stopa prawa", "bone": "stopa prawa", "attachment": "stopa prawa" },
+	{ "name": "piszczel prawa", "bone": "piszczel prawa", "attachment": "piszczel prawa" },
+	{ "name": "udo prawe", "bone": "udo prawe", "attachment": "udo prawe" },
+	{ "name": "pas", "bone": "pas", "attachment": "pas" },
+	{ "name": "plaszcz", "bone": "srodek", "attachment": "plaszcz" },
+	{ "name": "przedramie prawe", "bone": "przedramie prawe", "attachment": "przedramie prawe" },
+	{ "name": "ramie prawe", "bone": "ramie prawe", "attachment": "ramie prawe" },
+	{ "name": "prawa reka", "bone": "prawa reka", "attachment": "prawa reka" },
+	{ "name": "kap sr", "bone": "kap sr", "attachment": "kap sr" },
+	{ "name": "ryj", "bone": "ryj", "attachment": "ryj" },
+	{ "name": "nos", "bone": "ryj", "attachment": "nos" },
+	{ "name": "kap gora", "bone": "kap sr", "attachment": "kap gora" },
+	{ "name": "piorko copy", "bone": "piorko copy", "attachment": "piorko copy" },
+	{ "name": "kap dol", "bone": "kap sr", "attachment": "kap dol" }
+],
+"skins": {
+	"default": {
+		"bron": {
+			"bron": { "x": 82.41, "y": -3.64, "rotation": -121.24, "width": 105, "height": 176 }
+		},
+		"kap dol": {
+			"kap dol": { "x": -6.86, "y": -5.67, "rotation": -39.8, "width": 123, "height": 45 }
+		},
+		"kap gora": {
+			"kap gora": { "x": 9.96, "y": -3.43, "rotation": -39.8, "width": 66, "height": 42 }
+		},
+		"kap sr": {
+			"kap sr": { "x": -8.14, "y": -7.21, "rotation": -39.8, "width": 123, "height": 47 }
+		},
+		"lapka copy": {
+			"lapka copy": { "x": 6.2, "y": -0.23, "rotation": 159.45, "width": 28, "height": 26 }
+		},
+		"nos": {
+			"nos": { "x": 7.84, "y": 7.96, "rotation": -63.97, "width": 20, "height": 20 }
+		},
+		"palce lewe": {
+			"palce lewe": { "x": 12.64, "y": -1.58, "rotation": 159.45, "width": 19, "height": 28 }
+		},
+		"pas": {
+			"pas": { "x": 2.95, "y": -0.13, "rotation": 90, "width": 63, "height": 22 }
+		},
+		"piorko copy": {
+			"piorko copy": { "x": 28.21, "y": -1.37, "rotation": -39.8, "width": 50, "height": 42 }
+		},
+		"piszczel lewe": {
+			"piszczel lewe": { "x": 8.57, "y": 0.62, "rotation": 62.78, "width": 28, "height": 24 }
+		},
+		"piszczel prawa": {
+			"piszczel prawa": { "x": 6.81, "y": 2.16, "rotation": 65.9, "width": 26, "height": 23 }
+		},
+		"plaszcz": {
+			"plaszcz": { "x": 41.13, "y": -8.94, "rotation": -90, "width": 105, "height": 95 }
+		},
+		"prawa reka": {
+			"prawa reka": { "x": 11.52, "y": -0.72, "rotation": 157.75, "width": 31, "height": 29 }
+		},
+		"przedramie lewe": {
+			"przedramie lewe": { "x": 10.97, "y": 2.32, "rotation": 142.25, "width": 42, "height": 35 }
+		},
+		"przedramie prawe": {
+			"przedramie prawe": { "x": 17.5, "y": 3.46, "rotation": 123.03, "width": 41, "height": 47 }
+		},
+		"ramie lewe": {
+			"ramie lewe": { "x": 23.17, "y": -0.48, "rotation": 93.15, "width": 30, "height": 67 }
+		},
+		"ramie prawe": {
+			"ramie prawe": { "x": 28.29, "y": 3.16, "rotation": 66.2, "width": 42, "height": 57 }
+		},
+		"ryj": {
+			"ryj": { "x": 9.68, "y": -10.61, "rotation": -63.97, "width": 87, "height": 97 }
+		},
+		"srodek": {
+			"srodek": { "x": 39.13, "y": -6.94, "rotation": -90, "width": 85, "height": 89 }
+		},
+		"stopa lewe": {
+			"stopa lewe": { "x": 7.51, "y": 0.13, "rotation": 160.41, "width": 41, "height": 18 }
+		},
+		"stopa prawa": {
+			"stopa prawa": { "x": 1.85, "y": 0.95, "rotation": 150.95, "width": 29, "height": 13 }
+		},
+		"udo lewe": {
+			"udo lewe": { "x": 9.24, "y": 2.84, "rotation": 113.79, "width": 39, "height": 31 }
+		},
+		"udo prawe": {
+			"udo prawe": { "x": 15.76, "y": -0.82, "rotation": 76.6, "width": 34, "height": 40 }
+		}
+	}
+},
+"animations": {
+	"atak": {
+		"bones": {
+			"pas": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"ramie lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -62.24 },
+					{ "time": 0.2666, "angle": -340.67 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"przedramie lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": 29.23 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2, "x": -4.6, "y": 3.48 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"bron": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -34.54 },
+					{ "time": 0.2666, "angle": 20.44 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"ramie prawe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": 43.76 },
+					{ "time": 0.2666, "angle": 294.66 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"przedramie prawe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": 33.44 },
+					{ "time": 0.2666, "angle": 46.39 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1333, "x": -10.6, "y": 0.65 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"srodek": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -15.68 },
+					{ "time": 0.2666, "angle": 14.92 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2, "x": -1.48, "y": -8.16 },
+					{ "time": 0.2666, "x": 6.68, "y": 2.96 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"ryj": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 22.78 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"kap sr": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": 11.03 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"piorko copy": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": 23.29 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			}
+		}
+	},
+	"atak1": {
+		"bones": {
+			"pas": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"ramie lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -62.24 },
+					{ "time": 0.2666, "angle": -340.67 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"przedramie lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": 29.23 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2, "x": -4.6, "y": 3.48 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"bron": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -34.54 },
+					{ "time": 0.2666, "angle": 20.44 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"ramie prawe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": 43.76 },
+					{ "time": 0.2666, "angle": 294.66 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"przedramie prawe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": 33.44 },
+					{ "time": 0.2666, "angle": 46.39 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1333, "x": -10.6, "y": 0.65 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"srodek": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -15.68 },
+					{ "time": 0.2666, "angle": 14.92 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2, "x": -1.48, "y": -8.16 },
+					{ "time": 0.2666, "x": 6.68, "y": 2.96 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"ryj": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 22.78 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"kap sr": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": 11.03 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"piorko copy": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": 23.29 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"udo lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 36.99 },
+					{ "time": 0.2333, "angle": -14.95 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1, "x": -8.51, "y": -0.5 },
+					{ "time": 0.2333, "x": -18.53, "y": 8.01 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"piszczel lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"stopa lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"udo prawe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": -30.24 },
+					{ "time": 0.2666, "angle": 11.84 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": -15.02, "y": -4.5 },
+					{ "time": 0.1, "x": -4.5, "y": -1.75 },
+					{ "time": 0.2, "x": 4, "y": -4 },
+					{ "time": 0.2666, "x": 1, "y": -5.26 },
+					{ "time": 0.3333, "x": -15.02, "y": -4.5 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"bones": {
+			"srodek": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 0, "y": -2.79 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"ryj": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2666, "x": 7.25, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"pas": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"udo lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3, "angle": -9.29 },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"udo prawe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3, "angle": 6.27 },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"piszczel lewe": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": 5.87 },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"piszczel prawa": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"bron": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3666, "angle": 2.98 },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"ramie prawe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": -1.91, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"ramie lewe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": -5.11, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			}
+		}
+	}
+}
+}

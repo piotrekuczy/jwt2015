@@ -62,7 +62,7 @@ public class Gamescreen implements Screen {
 	Boolean fullscreen = false;
 
 	// stage
-	Stage stage;
+	Stage stage, stageCharacters;
 
 	// gameplay
 
@@ -98,7 +98,7 @@ public class Gamescreen implements Screen {
 	// gui
 
 	BitmapFont font;
-	Texture scena, panel;
+	Texture scena, panel, swiat02tlo;
 	SpineButton title, mapa;
 	boolean pozwolSchowac = false;
 
@@ -144,6 +144,7 @@ public class Gamescreen implements Screen {
 		// stage
 
 		stage = new Stage(viewport, batch);
+		stageCharacters = new Stage(viewport, batch);
 		Gdx.input.setInputProcessor(stage);
 
 		// spine
@@ -161,7 +162,12 @@ public class Gamescreen implements Screen {
 		scena.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		panel = Assets.manager.get(Assets.panel, Texture.class);
 		panel.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-
+		
+		// tla
+		
+		swiat02tlo = Assets.manager.get(Assets.swiat02tlo, Texture.class);
+		swiat02tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
 		// GENEROWANIE GAMEPLAYU
 
 		generateGameplay();
@@ -239,7 +245,7 @@ public class Gamescreen implements Screen {
 
 		title.addListener(new InputListener() {
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				if (!title.isClicked() && title.getY() <= 100) {
+				if (!title.isClicked() && title.getY() <= 20) {
 					title.setClicked(true);
 					fadeOutTitle(Gdx.graphics.getDeltaTime());
 				}
@@ -295,6 +301,7 @@ public class Gamescreen implements Screen {
 		swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest2"));
 		swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest3"));
 
+		// sprawdzenie poprawnosci wygenerowania danych
 		// z kazdego swiata
 		for (Swiat swiat : swiaty) {
 			// wydrukuj nazwy questow
@@ -302,6 +309,11 @@ public class Gamescreen implements Screen {
 				System.out.println(swiat.getQuesty().get(i).questName);
 			}
 		}
+		// generowanie gorali do kazdego questa
+		swiaty.get(0).getQuesty().get(0).getHeroes().add(new SpineActor(batch, sr, "characters/goral"));
+
+		// ustaw aktualny swiat na ten z numeru levelu
+
 	}
 
 	public void resetTitle() {
@@ -317,7 +329,7 @@ public class Gamescreen implements Screen {
 		currentState = GameState.ARENA;
 		// show hero dices
 		for (int i = 0; i < heroDices.size; i++) {
-			heroDices.get(i).setPosition(105 + (i * 133), -150);
+			heroDices.get(i).setPosition(135 + (i * 133), -150);
 		}
 		for (Dice dice : heroDices) {
 			dice.debug();
@@ -325,7 +337,7 @@ public class Gamescreen implements Screen {
 			dice.setVisible(true);
 		}
 		for (int i = 0; i < heroDices.size; i++) {
-			heroDices.get(i).setPosition(105 + (i * 133), -150);
+			heroDices.get(i).setPosition(135 + (i * 133), -150);
 			if (heroTurn) {
 				heroDices.get(i).addAction(moveTo(105 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
 			}
@@ -363,6 +375,11 @@ public class Gamescreen implements Screen {
 			mapa.addAction(moveTo(250, -900, 1.0f, Interpolation.fade));
 			// otworz kotare
 			kotaraState.setAnimation(0, "open", false);
+
+			// dodaj do stage postacie dla wybranego questa
+			swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 210);
+			stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
+
 			// uruchom mechanike rozgrywki
 			resetArena();
 
@@ -413,6 +430,8 @@ public class Gamescreen implements Screen {
 		kotaraSkeleton.updateWorldTransform();
 		sr.draw(batch, kotaraSkeleton);
 		batch.end();
+		stage.act(delta);
+		stage.draw();
 	}
 
 	public void updateTitle(float delta) {
@@ -429,14 +448,14 @@ public class Gamescreen implements Screen {
 			System.out.println("DZIOBAK");
 			currentState = GameState.MAP;
 		}
+		stage.act(delta);
+		stage.draw();
 	}
 
 	public void updateArena(float delta) {
 		// System.out.println("update arena");
 		batch.begin();
-		batch.draw(scena, 0, 0);
-		batch.draw(panel, 20, 10);
-		batch.draw(panel, 700, 10);
+		batch.draw(swiat02tlo,0,0);
 		// total power numbers
 		font.draw(batch, "total: ", 490, 130);
 		font.draw(batch, pulaGracza + "", 505, 100, 50, Align.center, false);
@@ -450,6 +469,9 @@ public class Gamescreen implements Screen {
 			generateEnemyDices();
 		}
 
+		stageCharacters.act(delta);
+		stageCharacters.draw();
+		
 		// draw kotara
 		batch.begin();
 		kotaraState.update(Gdx.graphics.getDeltaTime());
@@ -465,6 +487,8 @@ public class Gamescreen implements Screen {
 			font.draw(batch, "TURA GOROLA", 1050, 700);
 		}
 		batch.end();
+		stage.act(delta);
+		stage.draw();
 	}
 
 	@Override
@@ -479,15 +503,13 @@ public class Gamescreen implements Screen {
 		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		gamestates();
-
-		stage.act(delta);
-		stage.draw();
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		viewport.update(width, height);
 		stage.getViewport().update(width, height, true);
+		stageCharacters.getViewport().update(width, height, true);
 	}
 
 	@Override

@@ -1,0 +1,167 @@
+
+goral.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bron
+  rotate: true
+  xy: 2, 21
+  size: 105, 176
+  orig: 105, 176
+  offset: 0, 0
+  index: -1
+kap dol
+  rotate: false
+  xy: 602, 81
+  size: 123, 45
+  orig: 123, 45
+  offset: 0, 0
+  index: -1
+kap gora
+  rotate: false
+  xy: 727, 84
+  size: 66, 42
+  orig: 66, 42
+  offset: 0, 0
+  index: -1
+kap sr
+  rotate: false
+  xy: 477, 79
+  size: 123, 47
+  orig: 123, 47
+  offset: 0, 0
+  index: -1
+lapka copy
+  rotate: false
+  xy: 618, 53
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+nos
+  rotate: false
+  xy: 706, 59
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+palce lewe
+  rotate: true
+  xy: 676, 60
+  size: 19, 28
+  orig: 19, 28
+  offset: 0, 0
+  index: -1
+pas
+  rotate: false
+  xy: 955, 104
+  size: 63, 22
+  orig: 63, 22
+  offset: 0, 0
+  index: -1
+piorko copy
+  rotate: false
+  xy: 854, 84
+  size: 50, 42
+  orig: 50, 42
+  offset: 0, 0
+  index: -1
+piszczel lewe
+  rotate: true
+  xy: 998, 74
+  size: 28, 24
+  orig: 28, 24
+  offset: 0, 0
+  index: -1
+piszczel prawa
+  rotate: false
+  xy: 648, 56
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+plaszcz
+  rotate: false
+  xy: 180, 31
+  size: 105, 95
+  orig: 105, 95
+  offset: 0, 0
+  index: -1
+prawa reka
+  rotate: true
+  xy: 587, 46
+  size: 31, 29
+  orig: 31, 29
+  offset: 0, 0
+  index: -1
+przedramie lewe
+  rotate: false
+  xy: 287, 2
+  size: 42, 35
+  orig: 42, 35
+  offset: 0, 0
+  index: -1
+przedramie prawe
+  rotate: true
+  xy: 906, 85
+  size: 41, 47
+  orig: 41, 47
+  offset: 0, 0
+  index: -1
+ramie lewe
+  rotate: true
+  xy: 477, 47
+  size: 30, 67
+  orig: 30, 67
+  offset: 0, 0
+  index: -1
+ramie prawe
+  rotate: true
+  xy: 795, 84
+  size: 42, 57
+  orig: 42, 57
+  offset: 0, 0
+  index: -1
+ryj
+  rotate: true
+  xy: 287, 39
+  size: 87, 97
+  orig: 87, 97
+  offset: 0, 0
+  index: -1
+srodek
+  rotate: true
+  xy: 386, 41
+  size: 85, 89
+  orig: 85, 89
+  offset: 0, 0
+  index: -1
+stopa lewe
+  rotate: false
+  xy: 955, 84
+  size: 41, 18
+  orig: 41, 18
+  offset: 0, 0
+  index: -1
+stopa prawa
+  rotate: false
+  xy: 2, 6
+  size: 29, 13
+  orig: 29, 13
+  offset: 0, 0
+  index: -1
+udo lewe
+  rotate: false
+  xy: 546, 46
+  size: 39, 31
+  orig: 39, 31
+  offset: 0, 0
+  index: -1
+udo prawe
+  rotate: true
+  xy: 331, 3
+  size: 34, 40
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
