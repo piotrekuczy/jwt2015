@@ -201,9 +201,9 @@ public class Gamescreen implements Screen {
 		baseEnemyDieces = numberEnemyDieces;
 
 		for (int i = 0; i < enemyDices.size; i++) {
-			enemyDices.get(i).setPosition(785 + (i * 133), -150);
+			enemyDices.get(i).setPosition(725 + (i * 133), -150);
 			if (!heroTurn) {
-				enemyDices.get(i).addAction(moveTo(785 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
+				enemyDices.get(i).addAction(moveTo(725 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
 			}
 		}
 
@@ -329,7 +329,7 @@ public class Gamescreen implements Screen {
 		currentState = GameState.ARENA;
 		// show hero dices
 		for (int i = 0; i < heroDices.size; i++) {
-			heroDices.get(i).setPosition(135 + (i * 133), -150);
+			heroDices.get(i).setPosition(175 + (i * 133), -150);
 		}
 		for (Dice dice : heroDices) {
 			dice.debug();
@@ -337,9 +337,9 @@ public class Gamescreen implements Screen {
 			dice.setVisible(true);
 		}
 		for (int i = 0; i < heroDices.size; i++) {
-			heroDices.get(i).setPosition(135 + (i * 133), -150);
+			heroDices.get(i).setPosition(175 + (i * 133), -150);
 			if (heroTurn) {
-				heroDices.get(i).addAction(moveTo(105 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
+				heroDices.get(i).addAction(moveTo(175 + (i * 133), 5, 1.0f, Interpolation.bounceOut));
 			}
 		}
 	}
@@ -611,8 +611,8 @@ public class Gamescreen implements Screen {
 			for (int i = 0; i < heroDices.size; i++) {
 				heroDices.get(i).setStopklatka(false);
 				heroDices.get(i).setTouchable(Touchable.enabled);
-				heroDices.get(i).setPosition(105 + (i * 133), -100);
-				heroDices.get(i).addAction(moveTo(105 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
+				heroDices.get(i).setPosition(175 + (i * 133), -100);
+				heroDices.get(i).addAction(moveTo(175 + (i * 133), 5, 1.0f, Interpolation.bounceOut));
 			}
 		} else {
 
@@ -633,8 +633,8 @@ public class Gamescreen implements Screen {
 			baseEnemyDieces = numberEnemyDieces;
 			for (int i = 0; i < enemyDices.size; i++) {
 				enemyDices.get(i).setStopklatka(false);
-				enemyDices.get(i).setPosition(785 + (i * 133), -100);
-				enemyDices.get(i).addAction(moveTo(785 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
+				enemyDices.get(i).setPosition(725 + (i * 133), -100);
+				enemyDices.get(i).addAction(moveTo(725 + (i * 133), 5, 1.0f, Interpolation.bounceOut));
 			}
 		}
 		rolled = false;
@@ -706,7 +706,7 @@ public class Gamescreen implements Screen {
 			if (delayTimer >= delay) {
 				for (Dice dice : heroDices) {
 					dice.addAction(sequence(moveTo(dice.getX(), -150, 0.2f, Interpolation.linear),
-							moveTo(dice.getX(), 37, 1.0f, Interpolation.bounceOut)));
+							moveTo(dice.getX(), 5, 1.0f, Interpolation.bounceOut)));
 					dice.setStopklatka(false);
 					numberHeroDieces = baseHeroDieces;
 					delayTimer = 0;
