@@ -1,0 +1,609 @@
+{
+"skeleton": { "hash": "bNGZ7APATjI0dhJV3J4GEAVy2Fw", "spine": "2.1.27", "width": 824.11, "height": 628.99, "images": "./images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "lewe", "parent": "root", "length": 610.13, "x": 54.66, "y": 19.56, "rotation": 90 },
+	{ "name": "prawe", "parent": "root", "length": 571.12, "x": 782.29, "y": 11.25, "rotation": 91.36 },
+	{ "name": "srodek", "parent": "root", "length": 400.02, "x": 404.82, "y": 291.38 },
+	{ "name": "tabliczka1", "parent": "srodek", "length": 130.57, "x": -172.11, "y": 91.39, "rotation": 90 },
+	{ "name": "tabliczka2", "parent": "srodek", "length": 118.79, "x": -35.6, "y": -2.37, "rotation": 87.74 },
+	{ "name": "tabliczka3", "parent": "srodek", "length": 113.97, "x": 164.99, "y": -86.65, "rotation": 89.09 },
+	{ "name": "tabliczka4", "parent": "srodek", "length": 116.35, "x": -36.79, "y": -205.35, "rotation": 89.09 }
+],
+"slots": [
+	{ "name": "srodek", "bone": "srodek", "attachment": "srodek" },
+	{ "name": "lewe", "bone": "lewe", "attachment": "lewe" },
+	{ "name": "prawe", "bone": "prawe", "attachment": "prawe" },
+	{ "name": "tabliczka1", "bone": "tabliczka1", "attachment": "tabliczka1" },
+	{ "name": "tabliczka2", "bone": "tabliczka2", "attachment": "tabliczka2" },
+	{ "name": "tabliczka3", "bone": "tabliczka3", "attachment": "tabliczka3" },
+	{ "name": "tabliczka4", "bone": "tabliczka4", "attachment": "tabliczka4" }
+],
+"skins": {
+	"default": {
+		"lewe": {
+			"lewe": { "x": 303.77, "y": -12.2, "rotation": -90, "width": 129, "height": 620 }
+		},
+		"prawe": {
+			"prawe": { "x": 290.43, "y": 11.47, "rotation": -91.36, "width": 125, "height": 574 }
+		},
+		"srodek": {
+			"srodek": { "x": 25.53, "y": 4.44, "width": 762, "height": 583 }
+		},
+		"tabliczka1": {
+			"tabliczka1": { "x": 58.05, "y": -2.15, "rotation": -90, "width": 139, "height": 121 }
+		},
+		"tabliczka2": {
+			"tabliczka2": { "x": 55.88, "y": -0.45, "rotation": -87.74, "width": 139, "height": 121 }
+		},
+		"tabliczka3": {
+			"tabliczka3": { "x": 59.1, "y": -0.1, "rotation": -89.09, "width": 139, "height": 121 }
+		},
+		"tabliczka4": {
+			"tabliczka4": { "x": 58.83, "y": -1.89, "rotation": -89.09, "width": 139, "height": 121 }
+		}
+	}
+},
+"animations": {
+	"in": {
+		"slots": {
+			"tabliczka1": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 1.6666, "color": "99999998" }
+				]
+			},
+			"tabliczka2": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 1.6666, "color": "99999998" }
+				]
+			},
+			"tabliczka3": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 1.6666, "color": "99999998" }
+				]
+			},
+			"tabliczka4": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 1.6666, "color": "99999998" }
+				]
+			}
+		},
+		"bones": {
+			"lewe": {
+				"translate": [
+					{ "time": 0, "x": 317.26, "y": 0, "curve": "stepped" },
+					{ "time": 1.6666, "x": 317.26, "y": 0 }
+				]
+			},
+			"prawe": {
+				"translate": [
+					{ "time": 0, "x": -333.32, "y": 0, "curve": "stepped" },
+					{ "time": 1.6666, "x": -333.32, "y": 0 }
+				]
+			},
+			"srodek": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.053, "y": 1, "curve": "stepped" },
+					{ "time": 1.6666, "x": 0.053, "y": 1 }
+				]
+			},
+			"tabliczka1": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.6666, "x": 0, "y": 0 }
+				]
+			},
+			"tabliczka2": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.6666, "x": 0, "y": 0 }
+				]
+			},
+			"tabliczka3": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.6666, "x": 0, "y": 0 }
+				]
+			},
+			"tabliczka4": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.6666, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"show0": {
+		"slots": {
+			"tabliczka1": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			},
+			"tabliczka2": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			},
+			"tabliczka3": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			},
+			"tabliczka4": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			}
+		},
+		"bones": {
+			"lewe": {
+				"translate": [
+					{
+						"time": 0,
+						"x": 317.26,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.3333,
+						"x": -28.17,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{ "time": 0.4666, "x": 0, "y": 0 }
+				]
+			},
+			"prawe": {
+				"translate": [
+					{
+						"time": 0,
+						"x": -333.32,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.3333,
+						"x": 39,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{ "time": 0.4666, "x": 0, "y": 0 }
+				]
+			},
+			"srodek": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.4666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{
+						"time": 0,
+						"x": 0.053,
+						"y": 1,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.3333,
+						"x": 1.13,
+						"y": 1,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{ "time": 0.4666, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka1": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{
+						"time": 0.4666,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.6333,
+						"x": 1.634,
+						"y": 1,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{ "time": 0.8, "x": 0.6, "y": 0.6 }
+				]
+			},
+			"tabliczka2": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{
+						"time": 0.6333,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.8,
+						"x": 1.63,
+						"y": 1,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{ "time": 0.9666, "x": 0.6, "y": 0.6 }
+				]
+			},
+			"tabliczka3": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{
+						"time": 0.8,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.9666,
+						"x": 1.63,
+						"y": 1,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{ "time": 1.1, "x": 0.6, "y": 0.6 }
+				]
+			},
+			"tabliczka4": {
+				"scale": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{
+						"time": 0.9666,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 1.1,
+						"x": 1.63,
+						"y": 1,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{ "time": 1.2666, "x": 0.6, "y": 0.6 }
+				]
+			}
+		}
+	},
+	"show1": {
+		"slots": {
+			"tabliczka1": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 0.3333, "color": "99999998" },
+					{ "time": 0.5, "color": "ffffffff" }
+				]
+			},
+			"tabliczka2": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			},
+			"tabliczka3": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			},
+			"tabliczka4": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			}
+		},
+		"bones": {
+			"lewe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"prawe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"srodek": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka1": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 11.47 },
+					{ "time": 0.1666, "angle": -9.01 },
+					{ "time": 0.2333, "angle": 6.91 },
+					{ "time": 0.2666, "angle": -8.39 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 },
+					{ "time": 0.3333, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka2": {
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 }
+				]
+			},
+			"tabliczka3": {
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 }
+				]
+			},
+			"tabliczka4": {
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 }
+				]
+			}
+		}
+	},
+	"show2": {
+		"slots": {
+			"tabliczka1": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"tabliczka2": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 0.3333, "color": "99999998" },
+					{ "time": 0.5, "color": "ffffffff" }
+				]
+			},
+			"tabliczka3": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			},
+			"tabliczka4": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			}
+		},
+		"bones": {
+			"lewe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"prawe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"srodek": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka1": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka2": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 11.47 },
+					{ "time": 0.1666, "angle": -9.01 },
+					{ "time": 0.2333, "angle": 6.91 },
+					{ "time": 0.2666, "angle": -8.39 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 },
+					{ "time": 0.3333, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka3": {
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 }
+				]
+			},
+			"tabliczka4": {
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 }
+				]
+			}
+		}
+	},
+	"show3": {
+		"slots": {
+			"tabliczka1": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"tabliczka2": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"tabliczka3": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 0.3333, "color": "99999998" },
+					{ "time": 0.5, "color": "ffffffff" }
+				]
+			},
+			"tabliczka4": {
+				"color": [
+					{ "time": 0, "color": "99999998" }
+				]
+			}
+		},
+		"bones": {
+			"lewe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"prawe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"srodek": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka1": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka2": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka3": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 11.47 },
+					{ "time": 0.1666, "angle": -9.01 },
+					{ "time": 0.2333, "angle": 6.91 },
+					{ "time": 0.2666, "angle": -8.39 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 },
+					{ "time": 0.3333, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka4": {
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 }
+				]
+			}
+		}
+	},
+	"show4": {
+		"slots": {
+			"tabliczka1": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"tabliczka2": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"tabliczka3": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"tabliczka4": {
+				"color": [
+					{ "time": 0, "color": "99999998", "curve": "stepped" },
+					{ "time": 0.3333, "color": "99999998" },
+					{ "time": 0.5, "color": "ffffffff" }
+				]
+			}
+		},
+		"bones": {
+			"lewe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"prawe": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"srodek": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka1": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka2": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka3": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"tabliczka4": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 11.47 },
+					{ "time": 0.1666, "angle": -9.01 },
+					{ "time": 0.2333, "angle": 6.91 },
+					{ "time": 0.2666, "angle": -8.39 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.6, "y": 0.6 },
+					{ "time": 0.3333, "x": 1, "y": 1 }
+				]
+			}
+		}
+	}
+}
+}

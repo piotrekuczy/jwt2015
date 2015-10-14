@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.esotericsoftware.spine.Animation;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
@@ -36,6 +34,10 @@ public class SpineButton extends Actor {
 	// active arena offsets
 
 	int bboxX, bboxY, bboxWidth, bboxHeight;
+	
+	// flags
+	
+	boolean clicked = false;
 
 	public SpineButton(SpriteBatch batch, SkeletonRenderer sr, String spineName, String animIdle, int bboxX,
 			int bboxY, int bboxWidth, int bboxHeight) {
@@ -57,24 +59,12 @@ public class SpineButton extends Actor {
 
 		AnimationStateData stateData = new AnimationStateData(spineSkeletonData);
 		state = new AnimationState(stateData);
-		state.setAnimation(0, animIdle, true);
-		// state.addAnimation(0, animIdle, true, 0);
-		// state.addAnimation(0, "out",false, 0);
+		
 
 		// spineSkeleton.setColor(new Color(0, 1, 1, 1));
 
 		this.setBounds(bboxX, bboxY, bboxWidth, bboxHeight);
 
-		this.addListener(new InputListener() {
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("down");
-				return true;
-			}
-
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("up");
-			}
-		});
 	}
 
 	@Override
@@ -93,4 +83,21 @@ public class SpineButton extends Actor {
 		spineSkeleton.getColor().a = parentAlpha;
 		sr.draw(batch, spineSkeleton);
 	}
+
+	public boolean isClicked() {
+		return clicked;
+	}
+
+	public void setClicked(boolean clicked) {
+		this.clicked = clicked;
+	}
+
+	public AnimationState getState() {
+		return state;
+	}
+
+	public void setState(AnimationState state) {
+		this.state = state;
+	}
+	
 }

@@ -3,6 +3,7 @@ package pl.edu.piotrekuczy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Align;
@@ -63,6 +66,7 @@ public class Gamescreen implements Screen {
 
 	// gameplay
 
+	int level = 0;
 	int pulaGracza, pulaPrzeciwnika = 0;
 	boolean heroTurn = true;
 	boolean rolled = false;
@@ -92,10 +96,10 @@ public class Gamescreen implements Screen {
 	// gui
 
 	BitmapFont font;
-	Texture scena, panel, mapa;
-	SpineActor slupek;
-	SpineButton title;
-	
+	Texture scena, panel;
+	SpineButton title, mapa;
+	boolean pozwolSchowac = false;
+
 	// kotara
 
 	TextureAtlas kotaraAtlas;
@@ -106,7 +110,17 @@ public class Gamescreen implements Screen {
 	AnimationState kotaraState;
 	float kotaraAnimationTime = 0;
 
-	SpineActor spineact;
+	// mapa
+
+	TextureAtlas mapaAtlas;
+	SkeletonJson mapaJson;
+	SkeletonData mapaSkeletonData;
+	Skeleton mapaSkeleton;
+	Animation mapaIdleAnimation;
+	AnimationState mapaState;
+	float mapaAnimationTime = 0;
+
+	// SpineActor spineact;
 
 	// constructor
 	public Gamescreen(Jamwteatrze game) {
@@ -136,13 +150,6 @@ public class Gamescreen implements Screen {
 		dr.setBoundingBoxes(false);
 		dr.setRegionAttachments(false);
 
-		// sprite animations
-
-		// diceStandardAnimation =
-		// makeAnim(Assets.manager.get(Assets.diceStandardAtlas,
-		// TextureAtlas.class), "dice",
-		// 4, 0.2f, "LOOP_PINGPONG");
-
 		// gui
 
 		font = Assets.manager.get(Assets.myFont, BitmapFont.class);
@@ -152,18 +159,6 @@ public class Gamescreen implements Screen {
 		scena.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		panel = Assets.manager.get(Assets.panel, Texture.class);
 		panel.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		mapa = Assets.manager.get(Assets.mapa, Texture.class);
-		mapa.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-
-		// slupek do mapy
-		
-		slupek = new SpineActor(batch, sr, "gui/slupek", "in", "idle");
-		slupek.setTouchable(Touchable.disabled);
-		slupek.setVisible(false);
-		slupek.debug();
-		slupek.setPosition(640, 450);
-		// slupek.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
-		stage.addActor(slupek);
 
 		// DICES
 
@@ -193,6 +188,7 @@ public class Gamescreen implements Screen {
 		}
 
 		// ------ generate enemy dieces
+
 		enemyDices.add(new Dice(this, false));
 		enemyDices.add(new Dice(this, false));
 
@@ -217,9 +213,9 @@ public class Gamescreen implements Screen {
 		// spineact.debug();
 		// spineact.addAction(moveTo(300, 100, 0.5f, Interpolation.linear));
 		// stage.addActor(spineact);
-		
+
 		// kotara
-		
+
 		kotaraAtlas = new TextureAtlas(Gdx.files.internal("gui/kotara.atlas"));
 		kotaraJson = new SkeletonJson(kotaraAtlas);
 		kotaraSkeletonData = kotaraJson.readSkeletonData(Gdx.files.internal("gui/kotara.json"));
@@ -227,21 +223,55 @@ public class Gamescreen implements Screen {
 		kotaraIdleAnimation = kotaraSkeletonData.findAnimation("idle");
 		AnimationStateData stateData = new AnimationStateData(kotaraSkeletonData);
 		kotaraState = new AnimationState(stateData);
-		kotaraState.addAnimation(0, "idle",true, 0);
+		kotaraState.addAnimation(0, "idle", true, 0);
 		kotaraSkeleton.setPosition(-200, -150);
-		
+
 		// title
-		
-		title = new SpineButton(batch, sr, "gui/title", "idle",100,0,800,600);
+
+		title = new SpineButton(batch, sr, "gui/title", "idle", 100, 0, 800, 600);
 		title.setPosition(250, 900);
 		title.addAction(moveTo(250, 100, 2.0f, Interpolation.bounceOut));
 		title.debug();
+
+		// show in animation (repeat 0)
+
+		title.getState().setAnimation(0, "idle", true);
+
+		// title listeners
+
+		title.addListener(new InputListener() {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				if (!title.isClicked() && title.getY() <= 100) {
+					title.setClicked(true);
+					fadeOutTitle(Gdx.graphics.getDeltaTime());
+				}
+				return true;
+			}
+		});
+
 		stage.addActor(title);
+
+		// mapa
+
+		mapa = new SpineButton(batch, sr, "gui/mapa", "show0", 100, 0, 800, 600);
+		mapa.setPosition(250, -900);
+		mapa.debug();
+		mapa.setClicked(false);
+
+		// mapa listeners TODO!
+
+		mapa.addListener(new InputListener() {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				fadeOutMapa(Gdx.graphics.getDeltaTime());
+				return true;
+			}
+		});
+
+		stage.addActor(mapa);
 	}
 
 	@Override
 	public void show() {
-		System.out.println("jwt game screen show method");
 	}
 
 	public void gamestates() {
@@ -264,15 +294,55 @@ public class Gamescreen implements Screen {
 		}
 	}
 
+	public void fadeOutMapa(float daleta) {
+		System.out.println("fade out mapa");
+		if (!mapa.isClicked() && pozwolSchowac) {
+			mapa.setClicked(true);
+			// schowaj mape
+			mapa.addAction(moveTo(250, -900, 1.0f, Interpolation.fade));
+			// otworz kotare
+			kotaraState.setAnimation(0, "open", false);
+		}
+	}
+
+	public void fadeOutTitle(float delta) {
+		System.out.println("fade out title");
+		// hide title
+		title.addAction(moveTo(250, 900, 1.0f, Interpolation.fade));
+			// show map
+			// show in animation (repeat 0)
+			mapa.getState().setAnimation(0, "in", false);
+			mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
+				public void run() {
+					// after action show idle animation based on actual players
+					// level!
+					mapa.getState().addAnimation(0, "show0", false, 0);
+					if (level == 0) {
+						mapa.getState().addAnimation(0, "show1", false, 0);
+					}
+					if (level == 1) {
+						mapa.getState().addAnimation(0, "show2", false, 0);
+					}
+					if (level == 2) {
+						mapa.getState().addAnimation(0, "show3", false, 0);
+					}
+					if (level == 3) {
+						mapa.getState().addAnimation(0, "show4", false, 0);
+					}
+					// pozwol tutaj schowac mape jesli to potrzebne
+					pozwolSchowac = true;
+				}
+			})));
+	}
+
 	public void updateMap(float delta) {
-		// draw background
-		// draw map
+		// draw kotara
 		batch.begin();
-		batch.draw(mapa, (Gdx.graphics.getWidth() / 2) - (mapa.getWidth() / 2), 100);
+		kotaraState.update(Gdx.graphics.getDeltaTime());
+		kotaraState.apply(kotaraSkeleton);
+		kotaraSkeleton.updateWorldTransform();
+		sr.draw(batch, kotaraSkeleton);
 		batch.end();
-		// draw slupki objects
-		stage.act(delta);
-		stage.draw();
 	}
 
 	public void updateTitle(float delta) {
@@ -283,9 +353,11 @@ public class Gamescreen implements Screen {
 		kotaraSkeleton.updateWorldTransform();
 		sr.draw(batch, kotaraSkeleton);
 		batch.end();
-		// draw title and credits title jest spine actorem - po kliknieciu na niego mienia sie stan gry
-		stage.act(delta);
-		stage.draw();
+		// sprawdz czy ktora sie odslonila
+		if (kotaraState.getCurrent(0) == null) {
+			System.out.println("kotara animacja sie odslonila");
+			currentState = GameState.MAP;
+		}
 	}
 
 	public void updateArena(float delta) {
@@ -296,11 +368,7 @@ public class Gamescreen implements Screen {
 		batch.draw(panel, 700, 10);
 		batch.end();
 
-		stage.act(delta);
-		stage.draw();
-
 		batch.begin();
-
 		// total power numbers
 		font.draw(batch, "total: ", 490, 130);
 		font.draw(batch, pulaGracza + "", 505, 100, 50, Align.center, false);
@@ -323,6 +391,7 @@ public class Gamescreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		System.out.println("mapa = " + mapa.isClicked());
 		cameraInput();
 
 		camera.update();
@@ -333,6 +402,9 @@ public class Gamescreen implements Screen {
 		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		gamestates();
+
+		stage.act(delta);
+		stage.draw();
 	}
 
 	@Override
@@ -603,6 +675,5 @@ public class Gamescreen implements Screen {
 		// }
 
 	}
-
 
 }
