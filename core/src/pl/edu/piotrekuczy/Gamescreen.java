@@ -162,12 +162,12 @@ public class Gamescreen implements Screen {
 		scena.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		panel = Assets.manager.get(Assets.panel, Texture.class);
 		panel.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
+
 		// tla
-		
+
 		swiat02tlo = Assets.manager.get(Assets.swiat02tlo, Texture.class);
 		swiat02tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
+
 		// GENEROWANIE GAMEPLAYU
 
 		generateGameplay();
@@ -375,16 +375,16 @@ public class Gamescreen implements Screen {
 			mapa.addAction(moveTo(250, -900, 1.0f, Interpolation.fade));
 			// otworz kotare
 			kotaraState.setAnimation(0, "open", false);
-			
+
 			// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
 			// TUTAJ SIE USTAWIA TEZ GAMEPLAY
-			
+
 			// dodaj do stage postacie dla wybranego questa
 			swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 180);
 			stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
 
 			// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-			
+
 			// uruchom mechanike rozgrywki
 			resetArena();
 
@@ -460,7 +460,7 @@ public class Gamescreen implements Screen {
 	public void updateArena(float delta) {
 		// System.out.println("update arena");
 		batch.begin();
-		batch.draw(swiat02tlo,0,0);
+		batch.draw(swiat02tlo, 0, 0);
 		// total power numbers
 		font.draw(batch, "total: ", 35, 100);
 		font.draw(batch, pulaGracza + "", 50, 70, 50, Align.center, false);
@@ -476,7 +476,7 @@ public class Gamescreen implements Screen {
 
 		stageCharacters.act(delta);
 		stageCharacters.draw();
-		
+
 		// draw kotara
 		batch.begin();
 		kotaraState.update(Gdx.graphics.getDeltaTime());
@@ -603,8 +603,8 @@ public class Gamescreen implements Screen {
 
 		if (heroTurn) {
 			System.out.println("tura hero");
-			pulaGracza = 0;
-			pulaPrzeciwnika = 0;
+//			pulaGracza = 0;
+//			pulaPrzeciwnika = 0;
 			numberHeroDieces = 2;
 			baseHeroDieces = numberHeroDieces;
 			for (Dice dice : heroDices) {
@@ -622,8 +622,8 @@ public class Gamescreen implements Screen {
 		} else {
 
 			System.out.println("tura enemy");
-			pulaGracza = 0;
-			pulaPrzeciwnika = 0;
+//			pulaGracza = 0;
+//			pulaPrzeciwnika = 0;
 			enemyTurnTimer = 0;
 			enemyOne = false;
 			enemyTwo = false;
@@ -646,7 +646,7 @@ public class Gamescreen implements Screen {
 	}
 
 	private void generateEnemyDices() {
-
+	
 		// po 1 sec wylosuj pierwsza kostke
 		enemyTurnTimer += Gdx.graphics.getDeltaTime();
 		if (enemyOne == false && enemyTurnTimer >= 1) {
@@ -661,15 +661,14 @@ public class Gamescreen implements Screen {
 				enemyFail = true;
 			}
 		}
-		// po 2 sec wylosuj pierwsza kostke
+		// po 2 sec wylosuj druga kostke
 		if (enemyOne == true && enemyTwo == false && enemyTurnTimer >= 2) {
 			if (!enemyFail) {
 				enemyDices.get(1).setStopklatka(true);
 				if (enemyDices.get(1).numerKlatki != 1) {
 					pulaPrzeciwnika = pulaPrzeciwnika + enemyDices.get(1).numerKlatki;
 					enemyTwo = true;
-					// enemyDices.get(1).enemyDiceLogic();
-
+					System.out.println("tutaj enemy POWINIEN PODJAC DECYZJE CO DALEJ");
 				} else {
 					// enemy wylosowal 1
 					enemyTwo = true;
@@ -677,6 +676,8 @@ public class Gamescreen implements Screen {
 				}
 			} else {
 				System.out.println("enemy roll na pierwszej");
+				pulaGracza = 0;
+				pulaPrzeciwnika = 0;
 				swapTury();
 			}
 		}
@@ -686,10 +687,19 @@ public class Gamescreen implements Screen {
 
 				// TUTAJ DOPISAC ZE MA MIEC WYBOR MIEDZY DALSZYM LOSOWANIEM A
 				// ATAKIEM
-
-				// atakuj
-				System.out.println("ATAK");
+				// losuj czy losowac dalej czy atakowac
+				int random = MathUtils.random(0, 1);
+				if (random == 0) {
+					System.out.println("...I LOSUJE DALEJ");
+					enemyOne = false;
+					enemyTwo = false;
+					enemyTurnTimer = 0;
+					heroTurn = !heroTurn;
+					swapTury();
+				} else {
+					System.out.println("...I ATAKUJE!");
 				swapTury();
+				}
 			} else {
 				// spali jednak i swapnij
 				System.out.println("enemy roll na drugiej");
@@ -699,6 +709,8 @@ public class Gamescreen implements Screen {
 		// po 4 sec swapnij ture jesli enemy wylosowal na drugiej roll
 		if (enemyOne == true && enemyTwo == true && enemyFail == true && enemyTurnTimer >= 4) {
 			System.out.println("koniec cyklu generowania enemy");
+			pulaGracza = 0;
+			pulaPrzeciwnika = 0;
 			swapTury();
 		}
 	}
