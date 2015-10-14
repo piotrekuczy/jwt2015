@@ -335,6 +335,8 @@ public class Gamescreen implements Screen {
 		swiaty.get(level).getQuesty().get(0).getEnemys().get(0)
 				.setHp(swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getHp() - pulaGracza);
 		;
+		pulaGracza = 0;
+		pulaPrzeciwnika = 0;
 		swapTury();
 	}
 
@@ -371,12 +373,12 @@ public class Gamescreen implements Screen {
 			// dla kazdego questa dodaj gorala
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				swiat.getQuesty().get(i).getHeroes()
-						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 500));
+						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 20));
 			}
 			// dla kazdego questa dodaj owce
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				swiat.getQuesty().get(i).getEnemys()
-						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 500));
+						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 20));
 			}
 		}
 		// // generowanie gorali do kazdego questa
@@ -567,6 +569,9 @@ public class Gamescreen implements Screen {
 				if (swiaty.get(0).getQuesty().get(0).getEnemys().get(i).isDeleted()) {
 					swiaty.get(0).getQuesty().get(0).getEnemys().get(i).remove();
 					swiaty.get(0).getQuesty().get(0).getEnemys().removeIndex(i);
+
+					swiaty.get(0).getQuesty().get(0).getHeroes().get(i).remove();
+					swiaty.get(0).getQuesty().get(0).getHeroes().removeIndex(i);
 					System.out.println("enemy zostal zabity!");
 				}
 			}
@@ -577,6 +582,9 @@ public class Gamescreen implements Screen {
 				if (swiaty.get(0).getQuesty().get(0).getHeroes().get(i).isDeleted()) {
 					swiaty.get(0).getQuesty().get(0).getHeroes().get(i).remove();
 					swiaty.get(0).getQuesty().get(0).getHeroes().removeIndex(i);
+
+					swiaty.get(0).getQuesty().get(0).getEnemys().get(i).remove();
+					swiaty.get(0).getQuesty().get(0).getEnemys().removeIndex(i);
 					System.out.println("hero zostal zabity!");
 				}
 			}
@@ -601,6 +609,18 @@ public class Gamescreen implements Screen {
 		font.draw(batch, pulaGracza + "", 50, 70, 50, Align.center, false);
 		font.draw(batch, "total: ", 1160, 100);
 		font.draw(batch, pulaPrzeciwnika + "", 1175, 70, 50, Align.center, false);
+
+		// actual hp
+		if (swiaty.get(0).getQuesty().get(0).getHeroes().size > 0) {
+			font.draw(batch, swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getHp() + "",
+					swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getX() - 25,
+					swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getY() + 260, 50, Align.center, false);
+		}
+		if (swiaty.get(0).getQuesty().get(0).getEnemys().size > 0) {
+			font.draw(batch, swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getHp() + "",
+					swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getX() - 25,
+					swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getY() + 260, 50, Align.center, false);
+		}
 		batch.end();
 
 		if (heroTurn) {
@@ -839,7 +859,8 @@ public class Gamescreen implements Screen {
 				// ATAKIEM
 				// losuj czy losowac dalej czy atakowac
 				int random = MathUtils.random(0, 1);
-				if (random == 0) {
+				if (random == 0 && swiaty.get(level).getQuesty().get(0).getHeroes().get(0)
+						.getHp() > getPulaPrzeciwnika()) {
 					System.out.println("...I LOSUJE DALEJ");
 					enemyOne = false;
 					enemyTwo = false;
@@ -868,6 +889,8 @@ public class Gamescreen implements Screen {
 					swiaty.get(0).getQuesty().get(0).getHeroes().get(0)
 							.setHp(swiaty.get(0).getQuesty().get(0).getHeroes().get(0).getHp() - pulaPrzeciwnika);
 					;
+					pulaGracza = 0;
+					pulaPrzeciwnika = 0;
 					swapTury();
 				}
 			} else {
