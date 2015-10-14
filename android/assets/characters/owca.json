@@ -1,0 +1,237 @@
+{
+"skeleton": { "hash": "vG5XgVBt03EzKfDgfHulJHUv2eg", "spine": "2.1.27", "width": 238, "height": 174, "images": "./images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "lewa welna", "parent": "root", "length": 81.38, "x": -84.04, "y": 78.34, "rotation": 70.89 },
+	{ "name": "prawa welna", "parent": "root", "length": 145.06, "x": 11.31, "y": 18.25, "rotation": 83.26 },
+	{ "name": "lewy rog", "parent": "lewa welna", "length": 19.39, "x": 70.89, "y": 13.73, "rotation": 56.23 },
+	{ "name": "noga lewa s", "parent": "prawa welna", "length": 17.8, "x": 1.13, "y": 95.99, "rotation": -173.7 },
+	{ "name": "noga lewa sr copy", "parent": "prawa welna", "length": 17.95, "x": 13.15, "y": 58.52, "rotation": 179.54 },
+	{ "name": "noga prawa s", "parent": "prawa welna", "length": 14.72, "x": 25.62, "y": -66.79, "rotation": -170.53 },
+	{ "name": "noga prawa sr s", "parent": "prawa welna", "length": 13.51, "x": 11.64, "y": -32.51, "rotation": -160.08 },
+	{ "name": "nos", "parent": "lewa welna", "length": 12.97, "x": 34.46, "y": 31.42, "rotation": 2 },
+	{ "name": "prawy rog", "parent": "lewa welna", "length": 34.13, "x": 83.42, "y": -31.89, "rotation": -157.24 }
+],
+"slots": [
+	{ "name": "noga lewa s", "bone": "noga lewa s", "attachment": "noga lewa s" },
+	{ "name": "noga lewa sr copy", "bone": "noga lewa sr copy", "attachment": "noga lewa sr copy" },
+	{ "name": "noga prawa sr s", "bone": "noga prawa sr s", "attachment": "noga prawa sr s" },
+	{ "name": "noga prawa s", "bone": "noga prawa s", "attachment": "noga prawa s" },
+	{ "name": "lewy rog", "bone": "lewy rog", "attachment": "lewy rog" },
+	{ "name": "lewa welna", "bone": "lewa welna", "attachment": "lewa welna" },
+	{ "name": "usta", "bone": "lewa welna", "attachment": "usta" },
+	{ "name": "nos", "bone": "nos", "attachment": "nos" },
+	{ "name": "prawe oko", "bone": "lewa welna", "attachment": "prawe oko" },
+	{ "name": "prawa welna", "bone": "prawa welna", "attachment": "prawa welna" },
+	{ "name": "prawy rog", "bone": "prawy rog", "attachment": "prawy rog" },
+	{ "name": "lewe oko", "bone": "lewa welna", "attachment": "lewe oko" }
+],
+"skins": {
+	"default": {
+		"lewa welna": {
+			"lewa welna": { "x": 22.38, "y": -14.03, "rotation": -70.89, "width": 128, "height": 149 }
+		},
+		"lewe oko": {
+			"lewe oko": { "x": 60.47, "y": 27.21, "rotation": -70.89, "width": 13, "height": 12 }
+		},
+		"lewy rog": {
+			"lewy rog": { "x": 5.5, "y": 0.56, "rotation": -118.57, "width": 35, "height": 36 }
+		},
+		"noga lewa s": {
+			"noga lewa s": { "x": 10.74, "y": 0.01, "rotation": 90.44, "width": 27, "height": 33 }
+		},
+		"noga lewa sr copy": {
+			"noga lewa sr copy": { "x": 11.25, "y": 2.43, "rotation": 97.18, "width": 29, "height": 36 }
+		},
+		"noga prawa s": {
+			"noga prawa s": { "x": 10.12, "y": -0.81, "rotation": 87.27, "width": 34, "height": 30 }
+		},
+		"noga prawa sr s": {
+			"noga prawa sr s": { "x": 8.42, "y": -0.34, "rotation": 76.82, "width": 27, "height": 26 }
+		},
+		"nos": {
+			"nos": { "x": 0.81, "y": -0.28, "rotation": -72.89, "width": 31, "height": 31 }
+		},
+		"prawa welna": {
+			"prawa welna": { "x": 71.05, "y": 9.16, "rotation": -83.26, "width": 200, "height": 155 }
+		},
+		"prawe oko": {
+			"prawe oko": { "x": 63.89, "y": 5.11, "rotation": -70.89, "width": 23, "height": 24 }
+		},
+		"prawy rog": {
+			"prawy rog": { "x": 3.63, "y": 4.43, "rotation": 86.34, "width": 57, "height": 68 }
+		},
+		"usta": {
+			"usta": { "x": 22.82, "y": 1.46, "rotation": -70.89, "width": 43, "height": 22 }
+		}
+	}
+},
+"animations": {
+	"atak": {
+		"bones": {
+			"prawa welna": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.2333, "x": 1, "y": 0.945, "curve": "stepped" },
+					{ "time": 0.5, "x": 1, "y": 0.945 },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			},
+			"lewa welna": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 12.82, "curve": "stepped" },
+					{ "time": 0.4666, "angle": 12.82 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": 18.63, "y": 1.74, "curve": "stepped" },
+					{ "time": 0.4666, "x": 18.63, "y": 1.74 },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			},
+			"noga lewa s": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": -3.02, "y": -9.15 },
+					{ "time": 0.3333, "x": 7.91, "y": -9.91 },
+					{ "time": 0.5, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": -3.02, "y": -9.15 },
+					{ "time": 0.8333, "x": 7.91, "y": -9.91 },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"noga lewa sr copy": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": -8.84, "y": 5.4 },
+					{ "time": 0.3333, "x": -9.81, "y": -3.79 },
+					{ "time": 0.5, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": -8.84, "y": 5.4 },
+					{ "time": 0.8333, "x": -9.81, "y": -3.79 },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"noga prawa sr s": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": -4.24, "y": -8.7 },
+					{ "time": 0.3333, "x": 11.24, "y": -13.32 },
+					{ "time": 0.5, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": -4.24, "y": -8.7 },
+					{ "time": 0.8333, "x": 11.24, "y": -13.32 },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"noga prawa s": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": -7.21, "y": 11.45 },
+					{ "time": 0.3333, "x": -13.64, "y": 6.3 },
+					{ "time": 0.5, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": -7.21, "y": 11.45 },
+					{ "time": 0.8333, "x": -13.64, "y": 6.3 },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"prawy rog": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": 33.52, "curve": "stepped" },
+					{ "time": 0.7, "angle": 33.52 },
+					{ "time": 1, "angle": 0 }
+				]
+			},
+			"lewy rog": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": 19.41, "curve": "stepped" },
+					{ "time": 0.7666, "angle": 19.41 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2666, "x": 0.48, "y": -2, "curve": "stepped" },
+					{ "time": 0.7666, "x": 0.48, "y": -2, "curve": "stepped" },
+					{ "time": 1, "x": 0.48, "y": -2 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"bones": {
+			"prawa welna": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 0, "y": 4.69 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"lewa welna": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 0, "y": -3.28 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"noga prawa sr s": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 0.74, "y": 0.08 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"noga prawa s": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": -9.61, "y": -1.13 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"noga lewa sr copy": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": -5.81, "y": -0.68 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"noga lewa s": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": -0.93, "y": -0.1 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			}
+		}
+	}
+}
+}

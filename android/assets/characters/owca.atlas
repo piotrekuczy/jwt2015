@@ -1,0 +1,90 @@
+
+owca.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lewa welna
+  rotate: false
+  xy: 204, 102
+  size: 128, 149
+  orig: 128, 149
+  offset: 0, 0
+  index: -1
+lewe oko
+  rotate: true
+  xy: 47, 11
+  size: 13, 12
+  orig: 13, 12
+  offset: 0, 0
+  index: -1
+lewy rog
+  rotate: false
+  xy: 334, 215
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+noga lewa s
+  rotate: false
+  xy: 92, 61
+  size: 27, 33
+  orig: 27, 33
+  offset: 0, 0
+  index: -1
+noga lewa sr copy
+  rotate: false
+  xy: 61, 58
+  size: 29, 36
+  orig: 29, 36
+  offset: 0, 0
+  index: -1
+noga prawa s
+  rotate: false
+  xy: 334, 183
+  size: 34, 30
+  orig: 34, 30
+  offset: 0, 0
+  index: -1
+noga prawa sr s
+  rotate: false
+  xy: 61, 30
+  size: 27, 26
+  orig: 27, 26
+  offset: 0, 0
+  index: -1
+nos
+  rotate: false
+  xy: 371, 220
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+prawa welna
+  rotate: false
+  xy: 2, 96
+  size: 200, 155
+  orig: 200, 155
+  offset: 0, 0
+  index: -1
+prawe oko
+  rotate: false
+  xy: 334, 157
+  size: 23, 24
+  orig: 23, 24
+  offset: 0, 0
+  index: -1
+prawy rog
+  rotate: false
+  xy: 2, 26
+  size: 57, 68
+  orig: 57, 68
+  offset: 0, 0
+  index: -1
+usta
+  rotate: false
+  xy: 2, 2
+  size: 43, 22
+  orig: 43, 22
+  offset: 0, 0
+  index: -1

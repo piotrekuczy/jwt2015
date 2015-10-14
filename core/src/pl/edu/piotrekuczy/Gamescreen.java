@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -20,6 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -99,9 +102,10 @@ public class Gamescreen implements Screen {
 	// gui
 
 	BitmapFont font;
-	Texture scena, panel, swiat02tlo;
+	Texture scena, panel, swiat02tlo, atakujTex;
 	SpineButton title, mapa;
 	boolean pozwolSchowac = false;
+	ImageButton atakujButton;
 
 	// kotara
 
@@ -147,6 +151,21 @@ public class Gamescreen implements Screen {
 		stage = new Stage(viewport, batch);
 		stageCharacters = new Stage(viewport, batch);
 		Gdx.input.setInputProcessor(stage);
+		
+		// atakuj button
+		atakujTex = Assets.manager.get(Assets.atakuj, Texture.class);
+		atakujTex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		atakujButton = new ImageButton(new SpriteDrawable(new Sprite(atakujTex)));
+		atakujButton.setPosition(565, -200);
+		atakujButton.addListener(new InputListener() {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("atakuj button pressed");
+				atakuj();
+				return true;
+			}
+		});
+		
+		stage.addActor(atakujButton);
 
 		// spine
 		sr = new SkeletonRenderer();
@@ -163,7 +182,7 @@ public class Gamescreen implements Screen {
 		scena.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		panel = Assets.manager.get(Assets.panel, Texture.class);
 		panel.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-
+		
 		// tla
 
 		swiat02tlo = Assets.manager.get(Assets.swiat02tlo, Texture.class);
@@ -279,6 +298,13 @@ public class Gamescreen implements Screen {
 		}
 	}
 
+	public void atakuj(){
+		// odejmij punkty przeciwnikowi
+		swiaty.get(level).getQuesty().get(0).getEnemys().get(0)
+				.setHp(swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getHp() - pulaGracza);
+		;
+		swapTury();
+	}
 	public void generateGameplay() {
 		// generuj swiaty
 		// tablica swiatow (0123)
@@ -309,10 +335,20 @@ public class Gamescreen implements Screen {
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				System.out.println(swiat.getQuesty().get(i).questName);
 			}
+			// dla kazdego questa dodaj gorala
+			for (int i = 0; i < swiat.getQuesty().size; i++) {
+				swiat.getQuesty().get(i).getHeroes()
+						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 40));
+			}
+			// dla kazdego questa dodaj owce
+			for (int i = 0; i < swiat.getQuesty().size; i++) {
+				swiat.getQuesty().get(i).getEnemys()
+						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 40));
+			}
 		}
-		// generowanie gorali do kazdego questa
-		swiaty.get(0).getQuesty().get(0).getHeroes()
-				.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 40));
+		// // generowanie gorali do kazdego questa
+		// swiaty.get(0).getQuesty().get(0).getHeroes()
+		// .add(new SpineActor(batch, sr, shpr, "characters/goral", true, 40));
 
 		// ustaw aktualny swiat na ten z numeru levelu
 
@@ -329,6 +365,8 @@ public class Gamescreen implements Screen {
 
 	public void resetArena() {
 		currentState = GameState.ARENA;
+		// show atakuj button
+		atakujButton.addAction(moveTo(565, 0, 1.0f, Interpolation.bounceOut));
 		// show hero dices
 		for (int i = 0; i < heroDices.size; i++) {
 			heroDices.get(i).setPosition(175 + (i * 133), -150);
@@ -382,9 +420,12 @@ public class Gamescreen implements Screen {
 			// TUTAJ SIE USTAWIA TEZ GAMEPLAY
 
 			// dodaj do stage postacie dla wybranego questa
+			// bohatera
 			swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 180);
 			stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
-
+			// przeciwnikow
+			swiaty.get(level).getQuesty().get(0).getEnemys().get(0).setPosition(1100, 180);
+			stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getEnemys().get(0));
 			// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
 
 			// uruchom mechanike rozgrywki
@@ -492,6 +533,14 @@ public class Gamescreen implements Screen {
 		stageCharacters.act(delta);
 		stageCharacters.draw();
 
+		// rysowanie paskow hp
+		if (swiaty.get(0).getQuesty().get(0).getHeroes().size > 0) {
+			shpr.begin(ShapeType.Filled);
+			swiaty.get(0).getQuesty().get(0).getHeroes().get(0).renderHp(shpr);
+			swiaty.get(0).getQuesty().get(0).getEnemys().get(0).renderHp(shpr);
+			shpr.end();
+		}
+
 		// draw kotara
 		batch.begin();
 		kotaraState.update(Gdx.graphics.getDeltaTime());
@@ -509,12 +558,6 @@ public class Gamescreen implements Screen {
 		batch.end();
 		stage.act(delta);
 		stage.draw();
-		// rysowanie paskow hp
-		if (swiaty.get(0).getQuesty().get(0).getHeroes().size > 0) {
-			shpr.begin(ShapeType.Filled);
-			swiaty.get(0).getQuesty().get(0).getHeroes().get(0).renderHp(shpr);
-			shpr.end();
-		}
 	}
 
 	@Override
