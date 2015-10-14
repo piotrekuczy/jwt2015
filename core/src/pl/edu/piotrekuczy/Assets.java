@@ -27,7 +27,10 @@ public class Assets {
 	 public static final String scena = "bitmaps/scena.png";
 	 public static final String panel = "bitmaps/panel.png";
 	 public static final String atakuj = "bitmaps/sztandar.png";
-	 public static final String swiat02tlo = "swiaty/swiat02tlo.jpg";
+	 public static final String swiat00tlo = "swiaty/tlo01.jpg";
+	 public static final String swiat01tlo = "swiaty/tlo02.jpg";
+	 public static final String swiat02tlo = "swiaty/tlo03.jpg";
+	 public static final String swiat03tlo = "swiaty/tlo04.jpg";
 	 
 	// // BACKGROUND
 	// public static final String backgroundChecker =
@@ -73,7 +76,10 @@ public class Assets {
 		 manager.load(scena, Texture.class);
 		 manager.load(panel, Texture.class);
 		 manager.load(atakuj, Texture.class);
+		 manager.load(swiat00tlo, Texture.class);
+		 manager.load(swiat01tlo, Texture.class);
 		 manager.load(swiat02tlo, Texture.class);
+		 manager.load(swiat03tlo, Texture.class);
 		 
 		// manager.load(uiskinAtlas, TextureAtlas.class);
 		// manager.load(backgroundChecker, Texture.class);

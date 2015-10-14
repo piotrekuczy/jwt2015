@@ -70,7 +70,7 @@ public class Gamescreen implements Screen {
 
 	// gameplay
 
-	int level = 0;
+	int level = 3;
 	int pulaGracza, pulaPrzeciwnika = 0;
 	boolean heroTurn = true;
 	boolean rolled = false;
@@ -104,7 +104,7 @@ public class Gamescreen implements Screen {
 	// gui
 
 	BitmapFont font;
-	Texture scena, panel, swiat02tlo, atakujTex;
+	Texture scena, panel, swiat02tlo, swiat00tlo, swiat01tlo, swiat03tlo, atakujTex;
 	SpineButton title, mapa;
 	boolean pozwolSchowac = false;
 	ImageButton atakujButton;
@@ -190,9 +190,18 @@ public class Gamescreen implements Screen {
 
 		// tla
 
+		swiat00tlo = Assets.manager.get(Assets.swiat00tlo, Texture.class);
+		swiat00tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		swiat01tlo = Assets.manager.get(Assets.swiat01tlo, Texture.class);
+		swiat01tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
 		swiat02tlo = Assets.manager.get(Assets.swiat02tlo, Texture.class);
 		swiat02tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
+		swiat03tlo = Assets.manager.get(Assets.swiat03tlo, Texture.class);
+		swiat03tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
 		// GENEROWANIE GAMEPLAYU
 
 		generateGameplay();
@@ -373,12 +382,12 @@ public class Gamescreen implements Screen {
 			// dla kazdego questa dodaj gorala
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				swiat.getQuesty().get(i).getHeroes()
-						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 20));
+						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 200));
 			}
 			// dla kazdego questa dodaj owce
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				swiat.getQuesty().get(i).getEnemys()
-						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 20));
+						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 2));
 			}
 		}
 		// // generowanie gorali do kazdego questa
@@ -458,11 +467,27 @@ public class Gamescreen implements Screen {
 
 			// dodaj do stage postacie dla wybranego questa
 			// bohatera
-			swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 180);
-			stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
+			if (swiaty.get(level).getQuesty().get(0).getHeroes().size > 0) {
+				swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 180);
+				stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
+			} else {
+				// dodaj herosa jesli go nie ma
+				swiaty.get(level).getQuesty().get(0).getHeroes()
+						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 2));
+				swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 180);
+				stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
+			}
 			// przeciwnikow
-			swiaty.get(level).getQuesty().get(0).getEnemys().get(0).setPosition(1100, 180);
-			stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getEnemys().get(0));
+			if (swiaty.get(level).getQuesty().get(0).getEnemys().size > 0) {
+				swiaty.get(level).getQuesty().get(0).getEnemys().get(0).setPosition(1100, 180);
+				stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getEnemys().get(0));
+			} else {
+				// dodaj przeciwnika jesli go nie ma
+				swiaty.get(level).getQuesty().get(0).getEnemys()
+						.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 20));
+				swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 180);
+				stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
+			}
 			// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
 
 			// uruchom mechanike rozgrywki
@@ -495,7 +520,7 @@ public class Gamescreen implements Screen {
 		currentState = GameState.TITLE;
 		title.setClicked(false);
 		mapa.setClicked(false);
-		generateGameplay();
+		// generateGameplay();
 		pozwolSchowac = false;
 		resetTitle();
 	}
@@ -569,9 +594,6 @@ public class Gamescreen implements Screen {
 				if (swiaty.get(0).getQuesty().get(0).getEnemys().get(i).isDeleted()) {
 					swiaty.get(0).getQuesty().get(0).getEnemys().get(i).remove();
 					swiaty.get(0).getQuesty().get(0).getEnemys().removeIndex(i);
-
-					swiaty.get(0).getQuesty().get(0).getHeroes().get(i).remove();
-					swiaty.get(0).getQuesty().get(0).getHeroes().removeIndex(i);
 					System.out.println("enemy zostal zabity!");
 				}
 			}
@@ -582,9 +604,6 @@ public class Gamescreen implements Screen {
 				if (swiaty.get(0).getQuesty().get(0).getHeroes().get(i).isDeleted()) {
 					swiaty.get(0).getQuesty().get(0).getHeroes().get(i).remove();
 					swiaty.get(0).getQuesty().get(0).getHeroes().removeIndex(i);
-
-					swiaty.get(0).getQuesty().get(0).getEnemys().get(i).remove();
-					swiaty.get(0).getQuesty().get(0).getEnemys().removeIndex(i);
 					System.out.println("hero zostal zabity!");
 				}
 			}
@@ -603,7 +622,20 @@ public class Gamescreen implements Screen {
 		}
 
 		batch.begin();
-		batch.draw(swiat02tlo, 0, 0);
+		switch (level) {
+		case 0:
+			batch.draw(swiat00tlo, 0, 0);
+			break;
+		case 1:
+			batch.draw(swiat01tlo, 0, 0);
+			break;
+		case 2:
+			batch.draw(swiat02tlo, 0, 0);
+			break;
+		case 3:
+			batch.draw(swiat03tlo, 0, 0);
+			break;
+		}
 		// total power numbers
 		font.draw(batch, "total: ", 35, 100);
 		font.draw(batch, pulaGracza + "", 50, 70, 50, Align.center, false);
