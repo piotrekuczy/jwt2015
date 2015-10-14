@@ -310,7 +310,7 @@ public class Gamescreen implements Screen {
 			}
 		}
 		// generowanie gorali do kazdego questa
-		swiaty.get(0).getQuesty().get(0).getHeroes().add(new SpineActor(batch, sr, "characters/goral"));
+		swiaty.get(0).getQuesty().get(0).getHeroes().add(new SpineActor(batch, sr, "characters/goral", true, 75));
 
 		// ustaw aktualny swiat na ten z numeru levelu
 
@@ -375,11 +375,16 @@ public class Gamescreen implements Screen {
 			mapa.addAction(moveTo(250, -900, 1.0f, Interpolation.fade));
 			// otworz kotare
 			kotaraState.setAnimation(0, "open", false);
-
+			
+			// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+			// TUTAJ SIE USTAWIA TEZ GAMEPLAY
+			
 			// dodaj do stage postacie dla wybranego questa
-			swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 210);
+			swiaty.get(level).getQuesty().get(0).getHeroes().get(0).setPosition(100, 180);
 			stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
 
+			// ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+			
 			// uruchom mechanike rozgrywki
 			resetArena();
 
@@ -457,10 +462,10 @@ public class Gamescreen implements Screen {
 		batch.begin();
 		batch.draw(swiat02tlo,0,0);
 		// total power numbers
-		font.draw(batch, "total: ", 490, 130);
-		font.draw(batch, pulaGracza + "", 505, 100, 50, Align.center, false);
-		font.draw(batch, "total: ", 695, 130);
-		font.draw(batch, pulaPrzeciwnika + "", 710, 100, 50, Align.center, false);
+		font.draw(batch, "total: ", 35, 100);
+		font.draw(batch, pulaGracza + "", 50, 70, 50, Align.center, false);
+		font.draw(batch, "total: ", 1160, 100);
+		font.draw(batch, pulaPrzeciwnika + "", 1175, 70, 50, Align.center, false);
 		batch.end();
 
 		if (heroTurn) {
@@ -482,9 +487,9 @@ public class Gamescreen implements Screen {
 		batch.begin();
 		// turn info
 		if (heroTurn) {
-			font.draw(batch, "TURA KRAKUSA", 50, 700);
+			font.draw(batch, "TURA GRACZA", 50, 700);
 		} else {
-			font.draw(batch, "TURA GOROLA", 1050, 700);
+			font.draw(batch, "TURA OBCYCH", 1050, 700);
 		}
 		batch.end();
 		stage.act(delta);

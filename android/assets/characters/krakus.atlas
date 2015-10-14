@@ -1,0 +1,132 @@
+
+krakus.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Lbut
+  rotate: false
+  xy: 427, 36
+  size: 41, 22
+  orig: 41, 22
+  offset: 0, 0
+  index: -1
+Pbut
+  rotate: false
+  xy: 427, 36
+  size: 41, 22
+  orig: 41, 22
+  offset: 0, 0
+  index: -1
+Lnoga
+  rotate: false
+  xy: 117, 34
+  size: 40, 27
+  orig: 40, 27
+  offset: 0, 0
+  index: -1
+Lnoga2
+  rotate: true
+  xy: 117, 2
+  size: 30, 25
+  orig: 30, 25
+  offset: 0, 0
+  index: -1
+Lpalce
+  rotate: false
+  xy: 648, 100
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+Lreka
+  rotate: false
+  xy: 572, 88
+  size: 40, 38
+  orig: 40, 38
+  offset: 0, 0
+  index: -1
+Lreka2
+  rotate: true
+  xy: 375, 4
+  size: 27, 39
+  orig: 27, 39
+  offset: 0, 0
+  index: -1
+Pdlon
+  rotate: false
+  xy: 341, 2
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+Pnoga
+  rotate: false
+  xy: 159, 34
+  size: 32, 27
+  orig: 32, 27
+  offset: 0, 0
+  index: -1
+Pnoga2
+  rotate: false
+  xy: 614, 94
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Ppiorko
+  rotate: false
+  xy: 2, 14
+  size: 60, 47
+  orig: 60, 47
+  offset: 0, 0
+  index: -1
+Preka
+  rotate: true
+  xy: 64, 22
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+Preka2
+  rotate: false
+  xy: 526, 77
+  size: 44, 49
+  orig: 44, 49
+  offset: 0, 0
+  index: -1
+czapka
+  rotate: false
+  xy: 427, 60
+  size: 97, 66
+  orig: 97, 66
+  offset: 0, 0
+  index: -1
+miecz
+  rotate: true
+  xy: 2, 63
+  size: 63, 206
+  orig: 63, 206
+  offset: 0, 0
+  index: -1
+nos
+  rotate: false
+  xy: 470, 38
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+ryj
+  rotate: false
+  xy: 341, 33
+  size: 84, 93
+  orig: 84, 93
+  offset: 0, 0
+  index: -1
+ubranie
+  rotate: true
+  xy: 210, 9
+  size: 117, 129
+  orig: 117, 129
+  offset: 0, 0
+  index: -1

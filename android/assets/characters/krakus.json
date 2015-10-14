@@ -1,0 +1,350 @@
+{
+"skeleton": { "hash": "OW2tYlM+ns595roUBsohHUl0pgc", "spine": "2.1.27", "width": 206.93, "height": 241.79, "images": "./images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root", "x": -3.66, "y": 45.59 },
+	{ "name": "ubranie", "parent": "root", "length": 103.51, "x": -3.66, "y": 50.8, "rotation": 90 },
+	{ "name": "Lnoga", "parent": "bone", "length": 19.01, "x": -5.85, "y": 5.2, "rotation": -127.93 },
+	{ "name": "Lreka2", "parent": "ubranie", "length": 29.36, "x": 61.31, "y": 33.99, "rotation": 176.39 },
+	{ "name": "Pnoga", "parent": "bone", "length": 19.35, "x": 15.62, "y": 3.9, "rotation": -70.48 },
+	{ "name": "Preka", "parent": "ubranie", "length": 34.7, "x": 62.37, "y": -48.84, "rotation": -153.33 },
+	{ "name": "ryj", "parent": "ubranie", "length": 45.42, "x": 83.32, "y": 0.65, "rotation": -27.1 },
+	{ "name": "Lnoga2", "parent": "Lnoga", "length": 14.55, "x": 18.66, "y": 4.63, "rotation": 48.11 },
+	{ "name": "Lreka", "parent": "Lreka2", "length": 24.92, "x": 29.84, "y": 2.53, "rotation": -37.3 },
+	{ "name": "Pnoga2", "parent": "Pnoga", "length": 15.24, "x": 18.34, "y": 1.09, "rotation": 0.45 },
+	{ "name": "Preka2", "parent": "Preka", "length": 31.79, "x": 35.39, "y": -1.7, "rotation": -58.44 },
+	{ "name": "czapka", "parent": "ryj", "length": 25.15, "x": 52.4, "y": 0.49, "rotation": 16.65 },
+	{ "name": "Lbut", "parent": "Lnoga2", "length": 20.58, "x": 17.58, "y": 2.13, "rotation": -81.93 },
+	{ "name": "Lpalce", "parent": "Lreka", "length": 10.73, "x": 31.38, "y": -6.4, "rotation": -35.02 },
+	{ "name": "Pbut", "parent": "Pnoga2", "length": 22.45, "x": 20.02, "y": 1.73, "rotation": -80.61 },
+	{ "name": "Pdlon", "parent": "Preka2", "length": 20.68, "x": 33.44, "y": -1.08, "rotation": -41.91 },
+	{ "name": "Ppiorko", "parent": "czapka", "length": 52.25, "x": 15.23, "y": -14.4, "rotation": -48.84 },
+	{ "name": "miecz", "parent": "Lpalce", "length": 175.42, "x": 4.57, "y": -0.47, "rotation": -92.25 }
+],
+"slots": [
+	{ "name": "Lnoga2", "bone": "Lnoga2", "attachment": "Lnoga2" },
+	{ "name": "Lnoga", "bone": "Lnoga", "attachment": "Lnoga" },
+	{ "name": "Pnoga2", "bone": "Pnoga2", "attachment": "Pnoga2" },
+	{ "name": "Pnoga", "bone": "Pnoga", "attachment": "Pnoga" },
+	{ "name": "Lbut", "bone": "Lbut", "attachment": "Lbut" },
+	{ "name": "Pbut", "bone": "Pbut", "attachment": "Pbut" },
+	{ "name": "miecz", "bone": "miecz", "attachment": "miecz" },
+	{ "name": "Lpalce", "bone": "Lpalce", "attachment": "Lpalce" },
+	{ "name": "Lreka2", "bone": "Lreka2", "attachment": "Lreka2" },
+	{ "name": "Lreka", "bone": "Lreka", "attachment": "Lreka" },
+	{ "name": "ubranie", "bone": "ubranie", "attachment": "ubranie" },
+	{ "name": "ryj", "bone": "ryj", "attachment": "ryj" },
+	{ "name": "nos", "bone": "ryj", "attachment": "nos" },
+	{ "name": "Pdlon", "bone": "Pdlon", "attachment": "Pdlon" },
+	{ "name": "Preka", "bone": "Preka", "attachment": "Preka" },
+	{ "name": "Preka2", "bone": "Preka2", "attachment": "Preka2" },
+	{ "name": "czapka", "bone": "czapka", "attachment": "czapka" },
+	{ "name": "Ppiorko", "bone": "Ppiorko", "attachment": "Ppiorko" }
+],
+"skins": {
+	"default": {
+		"Lbut": {
+			"Lbut": { "x": 9.22, "y": -1.47, "rotation": 161.75, "width": 41, "height": 22 }
+		},
+		"Lnoga": {
+			"Lnoga": { "x": 7.34, "y": 2.77, "rotation": 127.93, "width": 40, "height": 27 }
+		},
+		"Lnoga2": {
+			"Lnoga2": { "x": 5.9, "y": -0.56, "rotation": 79.82, "width": 30, "height": 25 }
+		},
+		"Lpalce": {
+			"Lpalce": { "x": 7.13, "y": 0.33, "rotation": 165.93, "width": 19, "height": 26 }
+		},
+		"Lreka": {
+			"Lreka": { "x": 12.41, "y": 1.84, "rotation": 130.9, "width": 40, "height": 38 }
+		},
+		"Lreka2": {
+			"Lreka2": { "x": 12.98, "y": 1.24, "rotation": 93.6, "width": 27, "height": 39 }
+		},
+		"Pbut": {
+			"Pbut": { "x": 9.51, "y": -1.29, "rotation": 150.64, "width": 41, "height": 22 }
+		},
+		"Pdlon": {
+			"Pdlon": { "x": 9.04, "y": -1.29, "rotation": 167.15, "width": 32, "height": 29 }
+		},
+		"Pnoga": {
+			"Pnoga": { "x": 9.12, "y": 1.21, "rotation": 70.48, "width": 32, "height": 27 }
+		},
+		"Pnoga2": {
+			"Pnoga2": { "x": 6.11, "y": -0.06, "rotation": 70.03, "width": 32, "height": 32 }
+		},
+		"Ppiorko": {
+			"Ppiorko": { "x": 29.56, "y": -1.34, "rotation": -30.7, "width": 60, "height": 47 }
+		},
+		"Preka": {
+			"Preka": { "x": 18.15, "y": 2.64, "rotation": 66.8, "width": 39, "height": 51 }
+		},
+		"Preka2": {
+			"Preka2": { "x": 14.02, "y": 3.43, "rotation": 125.24, "width": 44, "height": 49 }
+		},
+		"czapka": {
+			"czapka": { "x": 4.82, "y": 0.34, "rotation": -79.55, "width": 97, "height": 66 }
+		},
+		"miecz": {
+			"miecz": { "x": 78.3, "y": 0.26, "rotation": -101.81, "width": 63, "height": 206 }
+		},
+		"nos": {
+			"nos": { "x": 5.63, "y": 10.22, "rotation": -62.89, "width": 20, "height": 20 }
+		},
+		"ryj": {
+			"ryj": { "x": 8.48, "y": -7.41, "rotation": -62.89, "width": 84, "height": 93 }
+		},
+		"ubranie": {
+			"ubranie": { "x": 45.5, "y": -10.31, "rotation": -90, "width": 117, "height": 129 }
+		}
+	}
+},
+"animations": {
+	"atak": {
+		"bones": {
+			"Pnoga": {
+				"rotate": [
+					{ "time": 0, "angle": -22.95 },
+					{ "time": 0.2, "angle": 0.45 },
+					{ "time": 0.3333, "angle": -22.95 }
+				],
+				"translate": [
+					{ "time": 0, "x": -1.33, "y": 14.02 },
+					{ "time": 0.1, "x": -6, "y": 1.33 },
+					{ "time": 0.2, "x": -2, "y": -1.23 },
+					{ "time": 0.3333, "x": -1.33, "y": 14.02 }
+				]
+			},
+			"ubranie": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": -14.18 },
+					{ "time": 0.2666, "angle": 15.72 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"bone": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"Lreka2": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": -52.36 },
+					{ "time": 0.2666, "angle": -332.11 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"Lreka": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": 13.06 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"miecz": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -27.59 },
+					{ "time": 0.2666, "angle": 9.38 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"Preka": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 37.22 },
+					{ "time": 0.2333, "angle": 288.98 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1, "x": -4.33, "y": 3.4 },
+					{ "time": 0.2333, "x": 5.06, "y": -7.23 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"ryj": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 23.42 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"czapka": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 2.32 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"Ppiorko": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": -30.16 },
+					{ "time": 0.2333, "angle": 9.77 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1333, "x": -5.16, "y": -5.95 },
+					{ "time": 0.2333, "x": -2.98, "y": -0.73 },
+					{ "time": 0.3333, "x": -5.16, "y": -5.95 }
+				]
+			},
+			"Lnoga": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 26.52 },
+					{ "time": 0.2, "angle": -24.65 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1, "x": -4, "y": 8.67 },
+					{ "time": 0.2, "x": 0.38, "y": 4.29 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"Lbut": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.0666, "angle": -17.65 },
+					{ "time": 0.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.0666, "x": 0.55, "y": -1.8 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			},
+			"Pbut": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 10.32 },
+					{ "time": 0.2, "angle": -8.15 },
+					{ "time": 0.3333, "angle": 10.32 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2, "x": 1.48, "y": 0.15 },
+					{ "time": 0.3333, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"bones": {
+			"ubranie": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 0, "y": -4.66 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"bone": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"Preka": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": -3.88, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"Lreka2": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": -5.43, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"ryj": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 8.54, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"miecz": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": 8.64 },
+					{ "time": 0.6666, "angle": 0 }
+				]
+			},
+			"Lnoga": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": -5.14 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"Pnoga": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": 10.81 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"Lnoga2": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": -10.25 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"Pbut": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": -1.87 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0.3333, "x": 0.06, "y": -0.4 }
+				]
+			}
+		}
+	}
+}
+}

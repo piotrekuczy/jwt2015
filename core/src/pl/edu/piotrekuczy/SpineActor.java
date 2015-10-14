@@ -31,18 +31,29 @@ public class SpineActor extends Actor {
 	Skeleton spineSkeleton;
 	AnimationState state;
 	float animationTime = 0;
+	boolean flipThatShit;
 
-	public SpineActor(SpriteBatch batch, SkeletonRenderer sr, String spineName) {
+	// gameplay
+	
+	int hp;
+	
+	public SpineActor(SpriteBatch batch, SkeletonRenderer sr, String spineName, boolean flipThatShit, int hp) {
 
 		this.batch = batch;
 		this.sr = sr;
 		this.spineName = spineName;
+		this.flipThatShit = flipThatShit;
+		
+		this.hp = hp;
 
 		spineAtlas = new TextureAtlas(Gdx.files.internal(spineName +".atlas"));
 		spineJson = new SkeletonJson(spineAtlas);
 		spineSkeletonData = spineJson.readSkeletonData(Gdx.files.internal(spineName + ".json"));
 		spineSkeleton = new Skeleton(spineSkeletonData);
 		
+		if(flipThatShit){
+			spineSkeleton.setFlipX(true);
+		}
 		AnimationStateData stateData = new AnimationStateData(spineSkeletonData);
 		state = new AnimationState(stateData);
 		state.setAnimation(0, "idle", true);
