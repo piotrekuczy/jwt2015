@@ -74,6 +74,8 @@ public class Gamescreen implements Screen {
 	boolean enemyOne, enemyTwo = false;
 	// enemy zrollowal
 	boolean enemyFail = false;
+	// SWIATY
+	private Array<Swiat> swiaty;
 
 	// timers
 	float delay = 0.5f; // seconds
@@ -159,6 +161,10 @@ public class Gamescreen implements Screen {
 		scena.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		panel = Assets.manager.get(Assets.panel, Texture.class);
 		panel.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
+		// GENEROWANIE GAMEPLAYU
+
+		generateGameplay();
 
 		// DICES
 
@@ -266,10 +272,42 @@ public class Gamescreen implements Screen {
 		}
 	}
 
+	public void generateGameplay() {
+		// generuj swiaty
+		// tablica swiatow (0123)
+		swiaty = new Array<Swiat>();
+		swiaty.add(new Swiat());
+		swiaty.add(new Swiat());
+		swiaty.add(new Swiat());
+		swiaty.add(new Swiat());
+		System.out.println("ilosc swiatow w grze =" + swiaty.size);
+		// ustawienie danych questow
+		swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest1"));
+		swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest2"));
+		swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest3"));
+		swiaty.get(1).getQuesty().add(new Quest("Swiat1-Quest1"));
+		swiaty.get(1).getQuesty().add(new Quest("Swiat1-Quest2"));
+		swiaty.get(1).getQuesty().add(new Quest("Swiat1-Quest3"));
+		swiaty.get(2).getQuesty().add(new Quest("Swiat2-Quest1"));
+		swiaty.get(2).getQuesty().add(new Quest("Swiat2-Quest2"));
+		swiaty.get(2).getQuesty().add(new Quest("Swiat2-Quest3"));
+		swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest1"));
+		swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest2"));
+		swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest3"));
+
+		// z kazdego swiata
+		for (Swiat swiat : swiaty) {
+			// wydrukuj nazwy questow
+			for (int i = 0; i < swiat.getQuesty().size; i++) {
+				System.out.println(swiat.getQuesty().get(i).questName);
+			}
+		}
+	}
+
 	public void resetTitle() {
 		title.setPosition(250, 900);
 		if (currentState == GameState.TITLE) {
-			title.addAction(moveTo(250, 100, 2.0f, Interpolation.bounceOut));
+			title.addAction(moveTo(200, 20, 2.0f, Interpolation.bounceOut));
 		}
 		// show in animation (repeat 0)
 		title.getState().setAnimation(0, "idle", true);
@@ -336,35 +374,35 @@ public class Gamescreen implements Screen {
 	}
 
 	public void fadeOutTitle(float delta) {
-			// System.out.println("fade out title");
-			// hide title
-			 title.addAction(moveTo(250, 900, 1.0f, Interpolation.fade));
-			// show map
-			// show in animation (repeat 0)
-			mapa.getState().setAnimation(0, "in", false);
-			mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
-				public void run() {
-					// after action show idle animation based on actual players
-					// level!
-					mapa.getState().addAnimation(0, "show0", false, 0);
-					if (level == 0) {
-						mapa.getState().addAnimation(0, "show1", false, 0);
-					}
-					if (level == 1) {
-						mapa.getState().addAnimation(0, "show2", false, 0);
-					}
-					if (level == 2) {
-						mapa.getState().addAnimation(0, "show3", false, 0);
-					}
-					if (level == 3) {
-						mapa.getState().addAnimation(0, "show4", false, 0);
-					}
-					// pozwol tutaj schowac mape jesli to potrzebne
-					pozwolSchowac = true;
-					currentState = GameState.MAP;
+		// System.out.println("fade out title");
+		// hide title
+		title.addAction(moveTo(200, 900, 1.0f, Interpolation.fade));
+		// show map
+		// show in animation (repeat 0)
+		mapa.getState().setAnimation(0, "in", false);
+		mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
+			public void run() {
+				// after action show idle animation based on actual players
+				// level!
+				mapa.getState().addAnimation(0, "show0", false, 0);
+				if (level == 0) {
+					mapa.getState().addAnimation(0, "show1", false, 0);
 				}
-			})));
-		}
+				if (level == 1) {
+					mapa.getState().addAnimation(0, "show2", false, 0);
+				}
+				if (level == 2) {
+					mapa.getState().addAnimation(0, "show3", false, 0);
+				}
+				if (level == 3) {
+					mapa.getState().addAnimation(0, "show4", false, 0);
+				}
+				// pozwol tutaj schowac mape jesli to potrzebne
+				pozwolSchowac = true;
+				currentState = GameState.MAP;
+			}
+		})));
+	}
 
 	public void updateMap(float delta) {
 		// System.out.println("update map");
@@ -411,6 +449,7 @@ public class Gamescreen implements Screen {
 		} else {
 			generateEnemyDices();
 		}
+
 		// draw kotara
 		batch.begin();
 		kotaraState.update(Gdx.graphics.getDeltaTime());

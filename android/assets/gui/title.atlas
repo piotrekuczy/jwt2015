@@ -1,83 +1,90 @@
 
 title.png
-size: 1024,512
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+1
+  rotate: false
+  xy: 204, 756
+  size: 361, 206
+  orig: 361, 206
+  offset: 0, 0
+  index: -1
 a
-  rotate: true
-  xy: 742, 217
-  size: 113, 231
-  orig: 113, 231
+  rotate: false
+  xy: 567, 663
+  size: 158, 299
+  orig: 158, 299
+  offset: 0, 0
+  index: -1
+autorzy
+  rotate: false
+  xy: 204, 569
+  size: 361, 185
+  orig: 361, 185
   offset: 0, 0
   index: -1
 b
   rotate: false
-  xy: 2, 255
-  size: 437, 234
-  orig: 437, 234
-  offset: 0, 0
-  index: -1
-b2
-  rotate: true
-  xy: 441, 194
-  size: 153, 299
-  orig: 153, 299
+  xy: 2, 415
+  size: 200, 547
+  orig: 200, 547
   offset: 0, 0
   index: -1
 e
   rotate: false
-  xy: 876, 19
-  size: 129, 196
-  orig: 129, 196
+  xy: 727, 709
+  size: 187, 253
+  orig: 187, 253
   offset: 0, 0
   index: -1
 g
-  rotate: true
-  xy: 315, 22
-  size: 170, 281
-  orig: 170, 281
+  rotate: false
+  xy: 466, 324
+  size: 146, 243
+  orig: 146, 243
   offset: 0, 0
   index: -1
 j
-  rotate: true
-  xy: 441, 349
-  size: 140, 330
-  orig: 140, 330
+  rotate: false
+  xy: 2, 2
+  size: 187, 411
+  orig: 187, 411
   offset: 0, 0
   index: -1
 l
+  rotate: false
+  xy: 341, 107
+  size: 123, 279
+  orig: 123, 279
+  offset: 0, 0
+  index: -1
+r
   rotate: true
-  xy: 2, 2
-  size: 85, 211
-  orig: 85, 211
+  xy: 466, 98
+  size: 224, 173
+  orig: 224, 173
   offset: 0, 0
   index: -1
 u
   rotate: true
-  xy: 773, 332
-  size: 157, 244
-  orig: 157, 244
-  offset: 0, 0
-  index: -1
-wr
-  rotate: false
-  xy: 742, 9
-  size: 132, 206
-  orig: 132, 206
+  xy: 727, 565
+  size: 142, 205
+  orig: 142, 205
   offset: 0, 0
   index: -1
 y
-  rotate: true
-  xy: 2, 89
-  size: 164, 311
-  orig: 164, 311
+  rotate: false
+  xy: 191, 128
+  size: 148, 258
+  orig: 148, 258
   offset: 0, 0
   index: -1
 z
-  rotate: false
-  xy: 598, 3
-  size: 142, 189
-  orig: 142, 189
+  rotate: true
+  xy: 204, 388
+  size: 179, 260
+  orig: 179, 260
   offset: 0, 0
   index: -1
