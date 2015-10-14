@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -20,6 +21,7 @@ public class SpineActor extends Actor {
 	// renderers
 
 	SpriteBatch batch;
+	ShapeRenderer shpr;
 	SkeletonRenderer sr;
 
 	// spine data
@@ -33,32 +35,36 @@ public class SpineActor extends Actor {
 	float animationTime = 0;
 	boolean flipThatShit;
 
-	// gameplay
+	// gameplay variables
 	
-	int hp;
-	
-	public SpineActor(SpriteBatch batch, SkeletonRenderer sr, String spineName, boolean flipThatShit, int hp) {
+	private int hp;
+	private int hpMax;
+	private boolean deleted = false;
+
+	public SpineActor(SpriteBatch batch, SkeletonRenderer sr, ShapeRenderer shpr, String spineName, boolean flipThatShit, int hp) {
 
 		this.batch = batch;
+		this.shpr = shpr;
 		this.sr = sr;
 		this.spineName = spineName;
 		this.flipThatShit = flipThatShit;
-		
-		this.hp = hp;
 
-		spineAtlas = new TextureAtlas(Gdx.files.internal(spineName +".atlas"));
+		this.hp = hp;
+		this.hpMax = hp;
+
+		spineAtlas = new TextureAtlas(Gdx.files.internal(spineName + ".atlas"));
 		spineJson = new SkeletonJson(spineAtlas);
 		spineSkeletonData = spineJson.readSkeletonData(Gdx.files.internal(spineName + ".json"));
 		spineSkeleton = new Skeleton(spineSkeletonData);
-		
-		if(flipThatShit){
+
+		if (flipThatShit) {
 			spineSkeleton.setFlipX(true);
 		}
 		AnimationStateData stateData = new AnimationStateData(spineSkeletonData);
 		state = new AnimationState(stateData);
 		state.setAnimation(0, "idle", true);
-		
-//		spineSkeleton.setColor(new Color(0, 1, 1, 1));
+
+		// spineSkeleton.setColor(new Color(0, 1, 1, 1));
 
 		this.setBounds(0, 0, 50, 50);
 
@@ -76,12 +82,13 @@ public class SpineActor extends Actor {
 
 	@Override
 	public void act(float delta) {
+		checkEnemyHp();
 		super.act(delta);
 		spineSkeleton.setX(getX());
 		spineSkeleton.setY(getY());
 		state.update(Gdx.graphics.getDeltaTime());
 		state.apply(spineSkeleton);
-		
+
 		spineSkeleton.updateWorldTransform();
 	}
 
@@ -90,5 +97,36 @@ public class SpineActor extends Actor {
 		spineSkeleton.getColor().a = parentAlpha;
 		sr.draw(batch, spineSkeleton);
 	}
+	public void checkEnemyHp() {
+		if (hp <= 0) {
+			// kill that character
+			this.setDeleted(true);
+		}
+	}
+	public void renderHp(ShapeRenderer sr) {
+		if (hp > 0) {
+			sr.setColor(0, 0, 0, 1);
+			sr.rect(getX() - (getWidth() / 2) * 0.7f, 390, ((getWidth() * 0.7f) * (100)) / 100, 10);
+			sr.setColor(1, (float) hp / hpMax, 0, 1);
+			sr.rect(getX() - (getWidth() / 2) * 0.7f, 390, (getWidth() * 0.7f) * ((float) hp / hpMax), 10);
+		}
+	}
 
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+	
+	
 }

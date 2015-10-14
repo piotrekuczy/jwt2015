@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -310,7 +311,8 @@ public class Gamescreen implements Screen {
 			}
 		}
 		// generowanie gorali do kazdego questa
-		swiaty.get(0).getQuesty().get(0).getHeroes().add(new SpineActor(batch, sr, "characters/goral", true, 75));
+		swiaty.get(0).getQuesty().get(0).getHeroes()
+				.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 40));
 
 		// ustaw aktualny swiat na ten z numeru levelu
 
@@ -459,6 +461,19 @@ public class Gamescreen implements Screen {
 
 	public void updateArena(float delta) {
 		// System.out.println("update arena");
+
+		// check for deleting hero from quest
+
+		if (swiaty.get(0).getQuesty().get(0).getHeroes().size > 0) {
+			for (int i = 0; i < swiaty.get(0).getQuesty().get(0).getHeroes().size; i++) {
+				if (swiaty.get(0).getQuesty().get(0).getHeroes().get(i).isDeleted()) {
+					swiaty.get(0).getQuesty().get(0).getHeroes().get(i).remove();
+					swiaty.get(0).getQuesty().get(0).getHeroes().removeIndex(i);
+					System.out.println("hero zostal zabity!");
+				}
+			}
+		}
+
 		batch.begin();
 		batch.draw(swiat02tlo, 0, 0);
 		// total power numbers
@@ -494,6 +509,12 @@ public class Gamescreen implements Screen {
 		batch.end();
 		stage.act(delta);
 		stage.draw();
+		// rysowanie paskow hp
+		if (swiaty.get(0).getQuesty().get(0).getHeroes().size > 0) {
+			shpr.begin(ShapeType.Filled);
+			swiaty.get(0).getQuesty().get(0).getHeroes().get(0).renderHp(shpr);
+			shpr.end();
+		}
 	}
 
 	@Override
@@ -555,6 +576,7 @@ public class Gamescreen implements Screen {
 
 	public void setPulaGracza(int pulaGracza) {
 		this.pulaGracza = pulaGracza;
+
 	}
 
 	public int getNumberEnemyDieces() {
@@ -603,8 +625,8 @@ public class Gamescreen implements Screen {
 
 		if (heroTurn) {
 			System.out.println("tura hero");
-//			pulaGracza = 0;
-//			pulaPrzeciwnika = 0;
+			// pulaGracza = 0;
+			// pulaPrzeciwnika = 0;
 			numberHeroDieces = 2;
 			baseHeroDieces = numberHeroDieces;
 			for (Dice dice : heroDices) {
@@ -622,8 +644,8 @@ public class Gamescreen implements Screen {
 		} else {
 
 			System.out.println("tura enemy");
-//			pulaGracza = 0;
-//			pulaPrzeciwnika = 0;
+			// pulaGracza = 0;
+			// pulaPrzeciwnika = 0;
 			enemyTurnTimer = 0;
 			enemyOne = false;
 			enemyTwo = false;
@@ -646,7 +668,7 @@ public class Gamescreen implements Screen {
 	}
 
 	private void generateEnemyDices() {
-	
+
 		// po 1 sec wylosuj pierwsza kostke
 		enemyTurnTimer += Gdx.graphics.getDeltaTime();
 		if (enemyOne == false && enemyTurnTimer >= 1) {
@@ -698,7 +720,11 @@ public class Gamescreen implements Screen {
 					swapTury();
 				} else {
 					System.out.println("...I ATAKUJE!");
-				swapTury();
+					// odejmij punkty graczowi (narazie tylko pierwszemu)
+					swiaty.get(0).getQuesty().get(0).getHeroes().get(0)
+							.setHp(swiaty.get(0).getQuesty().get(0).getHeroes().get(0).getHp() - pulaPrzeciwnika);
+					;
+					swapTury();
 				}
 			} else {
 				// spali jednak i swapnij
