@@ -127,6 +127,14 @@ public class SpineActor extends Actor {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+
+	public AnimationState getState() {
+		return state;
+	}
+
+	public void setState(AnimationState state) {
+		this.state = state;
+	}
 	
 	
 }

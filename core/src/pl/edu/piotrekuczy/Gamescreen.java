@@ -316,10 +316,21 @@ public class Gamescreen implements Screen {
 		pozwolSchowac = false;
 		title.setClicked(false);
 		mapa.setClicked(false);
-//		if (!mapa.isClicked() && pozwolSchowac) {
+		// if (!mapa.isClicked() && pozwolSchowac) {
 	}
 
 	public void atakuj() {
+		// animacja ataku i powrot do idle
+		swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getState().setAnimation(0, "atak", false);
+		swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getState().addAnimation(0, "idle", true, 0);
+		// animacja ruchu
+		swiaty.get(level).getQuesty().get(0).getHeroes().get(0)
+				.addAction(sequence(
+						moveTo(swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getX() + 1000,
+								swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getY(), 0.5f,
+								Interpolation.circle),
+						moveTo(100, swiaty.get(level).getQuesty().get(0).getHeroes().get(0).getY(), 0.5f,
+								Interpolation.fade)));
 		// odejmij punkty przeciwnikowi
 		swiaty.get(level).getQuesty().get(0).getEnemys().get(0)
 				.setHp(swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getHp() - pulaGracza);
@@ -335,7 +346,7 @@ public class Gamescreen implements Screen {
 		swiaty.add(new Swiat());
 		swiaty.add(new Swiat());
 		swiaty.add(new Swiat());
-//		System.out.println("ilosc swiatow w grze =" + swiaty.size);
+		// System.out.println("ilosc swiatow w grze =" + swiaty.size);
 		// ustawienie danych questow
 		swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest1"));
 		swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest2"));
@@ -355,12 +366,12 @@ public class Gamescreen implements Screen {
 		for (Swiat swiat : swiaty) {
 			// wydrukuj nazwy questow
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
-//				System.out.println(swiat.getQuesty().get(i).questName);
+				// System.out.println(swiat.getQuesty().get(i).questName);
 			}
 			// dla kazdego questa dodaj gorala
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
 				swiat.getQuesty().get(i).getHeroes()
-						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 5));
+						.add(new SpineActor(batch, sr, shpr, "characters/goral", true, 500));
 			}
 			// dla kazdego questa dodaj owce
 			for (int i = 0; i < swiat.getQuesty().size; i++) {
@@ -432,7 +443,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void fadeOutMapa(float daleta) {
-		
+
 		if (!mapa.isClicked() && pozwolSchowac) {
 			mapa.setClicked(true);
 			// schowaj mape
@@ -738,6 +749,7 @@ public class Gamescreen implements Screen {
 
 		if (heroTurn) {
 			System.out.println("tura hero");
+			atakowanie = false;
 			// pulaGracza = 0;
 			// pulaPrzeciwnika = 0;
 			numberHeroDieces = 2;
@@ -763,7 +775,7 @@ public class Gamescreen implements Screen {
 			enemyOne = false;
 			enemyTwo = false;
 			enemyFail = false;
-			atakowanie = false;
+			// atakowanie = false;
 			for (Dice dice : heroDices) {
 				dice.addAction(moveTo(dice.getX(), -150, 0.2f, Interpolation.linear));
 				dice.setStopklatka(true);
@@ -836,6 +848,22 @@ public class Gamescreen implements Screen {
 					swapTury();
 				} else {
 					System.out.println("...I ATAKUJE!");
+
+					// // animacja ataku i powrot do idle
+
+					swiaty.get(0).getQuesty().get(0).getEnemys().get(0).getState().setAnimation(0, "atak", false);
+
+					swiaty.get(0).getQuesty().get(0).getEnemys().get(0).getState().addAnimation(0, "idle", true,
+							0);
+
+					swiaty.get(0).getQuesty().get(0).getEnemys().get(0)
+							.addAction(sequence(
+									moveTo(swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getX() - 1000,
+											swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getY(), 0.5f,
+											Interpolation.circle),
+									moveTo(1100, swiaty.get(level).getQuesty().get(0).getEnemys().get(0).getY(),
+											0.5f, Interpolation.fade)));
+
 					// odejmij punkty graczowi (narazie tylko pierwszemu)
 					swiaty.get(0).getQuesty().get(0).getHeroes().get(0)
 							.setHp(swiaty.get(0).getQuesty().get(0).getHeroes().get(0).getHp() - pulaPrzeciwnika);
