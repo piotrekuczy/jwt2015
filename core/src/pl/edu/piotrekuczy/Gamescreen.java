@@ -222,15 +222,12 @@ public class Gamescreen implements Screen {
 		// title
 
 		title = new SpineButton(batch, sr, "gui/title", "idle", 100, 0, 800, 600);
-		title.setPosition(250, 900);
-		if (currentState == GameState.TITLE) {
-			title.addAction(moveTo(250, 100, 2.0f, Interpolation.bounceOut));
-		}
 		title.debug();
+		title.setClicked(false);
 
-		// show in animation (repeat 0)
-
-		title.getState().setAnimation(0, "idle", true);
+		if (currentState == GameState.TITLE) {
+			resetTitle();
+		}
 
 		// title listeners
 
@@ -267,6 +264,15 @@ public class Gamescreen implements Screen {
 		if (currentState == GameState.ARENA) {
 			resetArena();
 		}
+	}
+
+	public void resetTitle() {
+		title.setPosition(250, 900);
+		if (currentState == GameState.TITLE) {
+			title.addAction(moveTo(250, 100, 2.0f, Interpolation.bounceOut));
+		}
+		// show in animation (repeat 0)
+		title.getState().setAnimation(0, "idle", true);
 	}
 
 	public void resetArena() {
@@ -330,35 +336,38 @@ public class Gamescreen implements Screen {
 	}
 
 	public void fadeOutTitle(float delta) {
-		// hide title
-		title.addAction(moveTo(250, 900, 1.0f, Interpolation.fade));
-		// show map
-		// show in animation (repeat 0)
-		mapa.getState().setAnimation(0, "in", false);
-		mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
-			public void run() {
-				// after action show idle animation based on actual players
-				// level!
-				mapa.getState().addAnimation(0, "show0", false, 0);
-				if (level == 0) {
-					mapa.getState().addAnimation(0, "show1", false, 0);
+			// System.out.println("fade out title");
+			// hide title
+			 title.addAction(moveTo(250, 900, 1.0f, Interpolation.fade));
+			// show map
+			// show in animation (repeat 0)
+			mapa.getState().setAnimation(0, "in", false);
+			mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
+				public void run() {
+					// after action show idle animation based on actual players
+					// level!
+					mapa.getState().addAnimation(0, "show0", false, 0);
+					if (level == 0) {
+						mapa.getState().addAnimation(0, "show1", false, 0);
+					}
+					if (level == 1) {
+						mapa.getState().addAnimation(0, "show2", false, 0);
+					}
+					if (level == 2) {
+						mapa.getState().addAnimation(0, "show3", false, 0);
+					}
+					if (level == 3) {
+						mapa.getState().addAnimation(0, "show4", false, 0);
+					}
+					// pozwol tutaj schowac mape jesli to potrzebne
+					pozwolSchowac = true;
+					currentState = GameState.MAP;
 				}
-				if (level == 1) {
-					mapa.getState().addAnimation(0, "show2", false, 0);
-				}
-				if (level == 2) {
-					mapa.getState().addAnimation(0, "show3", false, 0);
-				}
-				if (level == 3) {
-					mapa.getState().addAnimation(0, "show4", false, 0);
-				}
-				// pozwol tutaj schowac mape jesli to potrzebne
-				pozwolSchowac = true;
-			}
-		})));
-	}
+			})));
+		}
 
 	public void updateMap(float delta) {
+		// System.out.println("update map");
 		// draw kotara
 		batch.begin();
 		kotaraState.update(Gdx.graphics.getDeltaTime());
@@ -369,6 +378,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void updateTitle(float delta) {
+		// System.out.println("update title");
 		// draw kotara
 		batch.begin();
 		kotaraState.update(Gdx.graphics.getDeltaTime());
@@ -376,8 +386,9 @@ public class Gamescreen implements Screen {
 		kotaraSkeleton.updateWorldTransform();
 		sr.draw(batch, kotaraSkeleton);
 		batch.end();
-		// sprawdz czy ktora sie odslonila
+		// sprawdz czy kotara sie odslonila
 		if (kotaraState.getCurrent(0) == null) {
+			System.out.println("DZIOBAK");
 			currentState = GameState.MAP;
 		}
 	}
