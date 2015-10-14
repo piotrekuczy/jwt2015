@@ -173,13 +173,6 @@ public class Gamescreen implements Screen {
 		numberHeroDieces = heroDices.size;
 		baseHeroDieces = numberHeroDieces;
 
-		for (int i = 0; i < heroDices.size; i++) {
-			heroDices.get(i).setPosition(105 + (i * 133), -150);
-			if (heroTurn) {
-				heroDices.get(i).addAction(moveTo(105 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
-			}
-		}
-
 		for (Dice dice : heroDices) {
 			dice.debug();
 			dice.setTouchable(Touchable.disabled);
@@ -230,7 +223,9 @@ public class Gamescreen implements Screen {
 
 		title = new SpineButton(batch, sr, "gui/title", "idle", 100, 0, 800, 600);
 		title.setPosition(250, 900);
-		title.addAction(moveTo(250, 100, 2.0f, Interpolation.bounceOut));
+		if (currentState == GameState.TITLE) {
+			title.addAction(moveTo(250, 100, 2.0f, Interpolation.bounceOut));
+		}
 		title.debug();
 
 		// show in animation (repeat 0)
@@ -268,6 +263,29 @@ public class Gamescreen implements Screen {
 		});
 
 		stage.addActor(mapa);
+
+		if (currentState == GameState.ARENA) {
+			resetArena();
+		}
+	}
+
+	public void resetArena() {
+		currentState = GameState.ARENA;
+		// show hero dices
+		for (int i = 0; i < heroDices.size; i++) {
+			heroDices.get(i).setPosition(105 + (i * 133), -150);
+		}
+		for (Dice dice : heroDices) {
+			dice.debug();
+			dice.setTouchable(Touchable.enabled);
+			dice.setVisible(true);
+		}
+		for (int i = 0; i < heroDices.size; i++) {
+			heroDices.get(i).setPosition(105 + (i * 133), -150);
+			if (heroTurn) {
+				heroDices.get(i).addAction(moveTo(105 + (i * 133), 37, 1.0f, Interpolation.bounceOut));
+			}
+		}
 	}
 
 	@Override
@@ -295,44 +313,49 @@ public class Gamescreen implements Screen {
 	}
 
 	public void fadeOutMapa(float daleta) {
-		System.out.println("fade out mapa");
 		if (!mapa.isClicked() && pozwolSchowac) {
 			mapa.setClicked(true);
 			// schowaj mape
 			mapa.addAction(moveTo(250, -900, 1.0f, Interpolation.fade));
 			// otworz kotare
 			kotaraState.setAnimation(0, "open", false);
+			// uruchom mechanike rozgrywki
+			resetArena();
+
+			// for (Dice dice : heroDices) {
+			// dice.setTouchable(Touchable.enabled);
+			// dice.setVisible(true);
+			// }
 		}
 	}
 
 	public void fadeOutTitle(float delta) {
-		System.out.println("fade out title");
 		// hide title
 		title.addAction(moveTo(250, 900, 1.0f, Interpolation.fade));
-			// show map
-			// show in animation (repeat 0)
-			mapa.getState().setAnimation(0, "in", false);
-			mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
-				public void run() {
-					// after action show idle animation based on actual players
-					// level!
-					mapa.getState().addAnimation(0, "show0", false, 0);
-					if (level == 0) {
-						mapa.getState().addAnimation(0, "show1", false, 0);
-					}
-					if (level == 1) {
-						mapa.getState().addAnimation(0, "show2", false, 0);
-					}
-					if (level == 2) {
-						mapa.getState().addAnimation(0, "show3", false, 0);
-					}
-					if (level == 3) {
-						mapa.getState().addAnimation(0, "show4", false, 0);
-					}
-					// pozwol tutaj schowac mape jesli to potrzebne
-					pozwolSchowac = true;
+		// show map
+		// show in animation (repeat 0)
+		mapa.getState().setAnimation(0, "in", false);
+		mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
+			public void run() {
+				// after action show idle animation based on actual players
+				// level!
+				mapa.getState().addAnimation(0, "show0", false, 0);
+				if (level == 0) {
+					mapa.getState().addAnimation(0, "show1", false, 0);
 				}
-			})));
+				if (level == 1) {
+					mapa.getState().addAnimation(0, "show2", false, 0);
+				}
+				if (level == 2) {
+					mapa.getState().addAnimation(0, "show3", false, 0);
+				}
+				if (level == 3) {
+					mapa.getState().addAnimation(0, "show4", false, 0);
+				}
+				// pozwol tutaj schowac mape jesli to potrzebne
+				pozwolSchowac = true;
+			}
+		})));
 	}
 
 	public void updateMap(float delta) {
@@ -355,7 +378,6 @@ public class Gamescreen implements Screen {
 		batch.end();
 		// sprawdz czy ktora sie odslonila
 		if (kotaraState.getCurrent(0) == null) {
-			System.out.println("kotara animacja sie odslonila");
 			currentState = GameState.MAP;
 		}
 	}
@@ -366,20 +388,11 @@ public class Gamescreen implements Screen {
 		batch.draw(scena, 0, 0);
 		batch.draw(panel, 20, 10);
 		batch.draw(panel, 700, 10);
-		batch.end();
-
-		batch.begin();
 		// total power numbers
 		font.draw(batch, "total: ", 490, 130);
 		font.draw(batch, pulaGracza + "", 505, 100, 50, Align.center, false);
 		font.draw(batch, "total: ", 695, 130);
 		font.draw(batch, pulaPrzeciwnika + "", 710, 100, 50, Align.center, false);
-		// turn info
-		if (heroTurn) {
-			font.draw(batch, "TURA KRAKUSA", 50, 700);
-		} else {
-			font.draw(batch, "TURA GOROLA", 1050, 700);
-		}
 		batch.end();
 
 		if (heroTurn) {
@@ -387,11 +400,25 @@ public class Gamescreen implements Screen {
 		} else {
 			generateEnemyDices();
 		}
+		// draw kotara
+		batch.begin();
+		kotaraState.update(Gdx.graphics.getDeltaTime());
+		kotaraState.apply(kotaraSkeleton);
+		kotaraSkeleton.updateWorldTransform();
+		sr.draw(batch, kotaraSkeleton);
+		batch.end();
+		batch.begin();
+		// turn info
+		if (heroTurn) {
+			font.draw(batch, "TURA KRAKUSA", 50, 700);
+		} else {
+			font.draw(batch, "TURA GOROLA", 1050, 700);
+		}
+		batch.end();
 	}
 
 	@Override
 	public void render(float delta) {
-		System.out.println("mapa = " + mapa.isClicked());
 		cameraInput();
 
 		camera.update();
