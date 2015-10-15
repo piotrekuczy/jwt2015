@@ -182,12 +182,13 @@ public class Gamescreen implements Screen {
 		for (int i = 0; i < 5; i++) {
 			enemys.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 10 + (i * 5)));
 		}
-		// odwrocenie tablicy zeby najsbalsi byli na jej koncu (czyli na poczatku gry)
+		// odwrocenie tablicy zeby najsbalsi byli na jej koncu (czyli na
+		// poczatku gry)
 		enemys.reverse();
-		
-//		System.out.println("stan enemys po ich wygenerowaniu");
+
+		// System.out.println("stan enemys po ich wygenerowaniu");
 		for (SpineActor enemy : enemys) {
-//			System.out.println("enemy hp = " + enemy.getHp());
+			// System.out.println("enemy hp = " + enemy.getHp());
 		}
 		// atakuj button
 
@@ -199,7 +200,7 @@ public class Gamescreen implements Screen {
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				if (pulaGracza > 0 && !atakowanie) {
 					atakowanie = true;
-					 System.out.println("atakuj button pressed");
+					System.out.println("atakuj button pressed");
 					atakuj();
 				}
 				return true;
@@ -232,10 +233,6 @@ public class Gamescreen implements Screen {
 		swiat03tlo = Assets.manager.get(Assets.swiat03tlo, Texture.class);
 		swiat03tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
-		// GENEROWANIE GAMEPLAYU
-
-		generateGameplay();
-
 		// DICES
 
 		heroDices = new Array<Dice>();
@@ -250,7 +247,7 @@ public class Gamescreen implements Screen {
 		baseHeroDieces = numberHeroDieces;
 
 		for (Dice dice : heroDices) {
-//			dice.debug();
+			// dice.debug();
 			dice.setTouchable(Touchable.disabled);
 			dice.setVisible(false);
 			stage.addActor(dice);
@@ -272,7 +269,7 @@ public class Gamescreen implements Screen {
 		}
 
 		for (Dice dice : enemyDices) {
-//			dice.debug();
+			// dice.debug();
 			stage.addActor(dice);
 		}
 
@@ -291,7 +288,7 @@ public class Gamescreen implements Screen {
 		// title
 
 		title = new SpineButton(batch, sr, "gui/title", "idle", 100, 0, 800, 600);
-//		title.debug();
+		// title.debug();
 		title.setClicked(false);
 
 		if (currentState == GameState.TITLE) {
@@ -316,7 +313,7 @@ public class Gamescreen implements Screen {
 
 		mapa = new SpineButton(batch, sr, "gui/mapa", "show0", 100, 0, 800, 600);
 		mapa.setPosition(250, -900);
-//		mapa.debug();
+		// mapa.debug();
 		mapa.setClicked(false);
 
 		// mapa listeners TODO!
@@ -350,10 +347,10 @@ public class Gamescreen implements Screen {
 		enemys.peek().setPosition(1500, 180);
 		stageCharacters.addActor(enemys.peek());
 		enemys.peek().addAction(moveTo(1100, 180, 1.0f, Interpolation.linear));
-//		System.out.println("stan enemys po ich pokazaniu");
+		// System.out.println("stan enemys po ich pokazaniu");
 		for (SpineActor enemy : enemys) {
 			// System.out.println("enemy hp = " + enemy.getHp());
-//			System.out.println("enemy status = " + enemy.isDeleted());
+			// System.out.println("enemy status = " + enemy.isDeleted());
 		}
 	}
 
@@ -384,14 +381,9 @@ public class Gamescreen implements Screen {
 		pozwolSchowac = false;
 		title.setClicked(false);
 		mapa.setClicked(false);
-		// if (!mapa.isClicked() && pozwolSchowac) {
 	}
 
 	public void atakuj() {
-//		for (Dice dice : heroDices) {
-//			dice.addAction(moveTo(dice.getX(), -150, 0.2f, Interpolation.linear));
-//			dice.setStopklatka(true);
-//		}
 		// animacja ataku i powrot do idle
 
 		playerIcon.getState().setAnimation(0, "atak", false);
@@ -407,7 +399,7 @@ public class Gamescreen implements Screen {
 		pulaPrzeciwnika = 0;
 
 		// jesli nie zabiles przeciwnika (jeszcze zyje po ataku) to swapnij ture
-		if(!(enemys.peek().getHp()<=0)){
+		if (!(enemys.peek().getHp() <= 0)) {
 			swapTury();
 		} else {
 			heroTurn = !heroTurn;
@@ -415,57 +407,11 @@ public class Gamescreen implements Screen {
 		}
 	}
 
-	public void generateGameplay() {
-		// // generuj swiaty
-		// // tablica swiatow (0123)
-		// swiaty = new Array<Swiat>();
-		// swiaty.add(new Swiat());
-		// swiaty.add(new Swiat());
-		// swiaty.add(new Swiat());
-		// swiaty.add(new Swiat());
-		// // System.out.println("ilosc swiatow w grze =" + swiaty.size);
-		// // ustawienie danych questow
-		// swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest1"));
-		// swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest2"));
-		// swiaty.get(0).getQuesty().add(new Quest("Swiat0-Quest3"));
-		//
-		// swiaty.get(1).getQuesty().add(new Quest("Swiat1-Quest1"));
-		// swiaty.get(1).getQuesty().add(new Quest("Swiat1-Quest2"));
-		// swiaty.get(1).getQuesty().add(new Quest("Swiat1-Quest3"));
-		//
-		// swiaty.get(2).getQuesty().add(new Quest("Swiat2-Quest1"));
-		// swiaty.get(2).getQuesty().add(new Quest("Swiat2-Quest2"));
-		// swiaty.get(2).getQuesty().add(new Quest("Swiat2-Quest3"));
-		//
-		// swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest1"));
-		// swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest2"));
-		// swiaty.get(3).getQuesty().add(new Quest("Swiat3-Quest3"));
-		//
-		// // sprawdzenie poprawnosci wygenerowania danych
-		// // z kazdego swiata
-		// for (Swiat swiat : swiaty) {
-		// // wydrukuj nazwy questow
-		// for (int i = 0; i < swiat.getQuesty().size; i++) {
-		// // System.out.println(swiat.getQuesty().get(i).questName);
-		// }
-		// // dla kazdego questa dodaj gorala
-		// for (int i = 0; i < swiat.getQuesty().size; i++) {
-		// swiat.getQuesty().get(i).getHeroes()
-		// .add(new SpineActor(batch, sr, shpr, "characters/goral", true, 200));
-		// }
-		// // dla kazdego questa dodaj owce
-		// for (int i = 0; i < swiat.getQuesty().size; i++) {
-		// swiat.getQuesty().get(i).getEnemys()
-		// .add(new SpineActor(batch, sr, shpr, "characters/owca", false, 2));
-		// }
-		// }
-	}
-
-	public void resetMapa(){
-//		if (!mapa.isClicked() && pozwolSchowac) {
+	public void resetMapa() {
 		mapa.setClicked(false);
 		pozwolSchowac = false;
 	}
+
 	public void resetTitle() {
 		gameover = false;
 		title.setPosition(250, 900);
@@ -474,7 +420,7 @@ public class Gamescreen implements Screen {
 		}
 		// show in animation (repeat 0)
 		title.getState().setAnimation(0, "idle", true);
-	
+
 	}
 
 	public void resetArena() {
@@ -487,7 +433,7 @@ public class Gamescreen implements Screen {
 			heroDices.get(i).setPosition(175 + (i * 133), -150);
 		}
 		for (Dice dice : heroDices) {
-//			dice.debug();
+			// dice.debug();
 			dice.setTouchable(Touchable.enabled);
 			dice.setVisible(true);
 		}
@@ -659,25 +605,18 @@ public class Gamescreen implements Screen {
 			dice.setTouchable(Touchable.disabled);
 			dice.addAction(moveTo(dice.getX(), -200, 1.0f, Interpolation.fade));
 		}
-//
+		//
 		// wyjeb atakuj
 		atakujButton.addAction(moveTo(565, -200, 1.0f, Interpolation.fade));
 		// zamknij kotare
 		kotaraState.setAnimation(0, "close", false);
-//		if (kotaraState.getCurrent(0) == null) {
-//			System.out.println("kotara sie zamknela");
-//		}
-		if(kotaraState.getCurrent(0).isComplete()){
+		// if (kotaraState.getCurrent(0) == null) {
+		// System.out.println("kotara sie zamknela");
+		// }
+		if (kotaraState.getCurrent(0).isComplete()) {
 			System.out.println("REKSIO");
 		}
-		
-//		// poka title
-////		setInitialValues();
-//		title.setClicked(false);
-//		mapa.setClicked(false);
-//		// generateGameplay();
-//		pozwolSchowac = false;
-//		if (!title.isClicked() && title.getY() <= 20) {
+
 		game.player.playerHp = game.initialHp;
 		playerIcon.setHp(game.player.playerHp);
 		title.setClicked(false);
@@ -760,7 +699,7 @@ public class Gamescreen implements Screen {
 		if (enemys.size > 0) {
 			font.draw(batch, enemys.peek().getHp() + "", enemys.peek().getX() - 15, enemys.peek().getY() + 260);
 		}
-		
+
 		batch.end();
 		// draw kotara
 		batch.begin();
@@ -780,10 +719,10 @@ public class Gamescreen implements Screen {
 	public void updateArena(float delta) {
 
 		// gameover, zapraklo hp playerowi
-		if(game.player.playerHp<=0){
+		if (game.player.playerHp <= 0) {
 			fadeOutArena();
 		}
-		
+
 		batch.begin();
 		switch (level) {
 		case 0:
@@ -812,7 +751,7 @@ public class Gamescreen implements Screen {
 		if (enemys.size > 0) {
 			font.draw(batch, enemys.peek().getHp() + "", enemys.peek().getX() - 15, enemys.peek().getY() + 260);
 		}
-		
+
 		batch.end();
 
 		if (heroTurn) {
@@ -1072,7 +1011,7 @@ public class Gamescreen implements Screen {
 				// ATAKIEM
 				// losuj czy losowac dalej czy atakowac
 				int random = MathUtils.random(0, 1);
-				if (random == 0 && game.player.playerHp>pulaPrzeciwnika) {
+				if (random == 0 && game.player.playerHp > pulaPrzeciwnika) {
 					// if (random == 0 &&
 					// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0)
 					// .getHp() > getPulaPrzeciwnika()) {
@@ -1155,7 +1094,7 @@ public class Gamescreen implements Screen {
 			for (Dice dice : heroDices) {
 				dice.setTouchable(Touchable.disabled);
 			}
-//			 System.out.println("ROLLED");
+			// System.out.println("ROLLED");
 			delayTimer += Gdx.graphics.getDeltaTime();
 			if (delayTimer >= delay) {
 				for (Dice dice : heroDices) {
@@ -1170,7 +1109,7 @@ public class Gamescreen implements Screen {
 		if (numberHeroDieces == 1 && rolled)
 
 		{
-//			 System.out.println("ROLLED2");
+			// System.out.println("ROLLED2");
 			delayTimer += Gdx.graphics.getDeltaTime();
 			if (delayTimer >= delay) {
 				for (Dice dice : heroDices) {
