@@ -498,105 +498,6 @@ public class Gamescreen implements Screen {
 		}
 	}
 
-	public void resetujQuest() {
-		System.out.println("aktualny qest " + nrQesta);
-		// wywal stare herosy lub enemy
-		if (swiaty.get(level).getQuesty().get(nrQesta - 1).getHeroes().size > 0) {
-			swiaty.get(level).getQuesty().get(nrQesta - 1).getHeroes().get(0).remove();
-			swiaty.get(level).getQuesty().get(nrQesta - 1).getHeroes().removeIndex(0);
-			// postaw bohatera
-			swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0).setPosition(100, 180);
-			stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0));
-		}
-		if (swiaty.get(level).getQuesty().get(nrQesta - 1).getEnemys().size <= 0) {
-			// swiaty.get(level).getQuesty().get(nrQesta -
-			// 1).getEnemys().get(0).remove();
-			// swiaty.get(level).getQuesty().get(nrQesta -
-			// 1).getEnemys().removeIndex(0);
-
-			// postaw owce
-			swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).setPosition(1100, 180);
-			stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0));
-		}
-
-	}
-
-	public void uzupelnijWtrakcie() {
-		// // ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-		// // TUTAJ SIE USTAWIA TEZ GAMEPLAY
-		//
-		// // dodaj do stage postacie dla wybranego questa
-		// // bohatera
-		// if (swiaty.get(level).getQuesty().get(nrQesta).getHeroes().size > 0)
-		// {
-		// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0).setPosition(100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0));
-		// } else {
-		// // dodaj herosa jesli go nie ma
-		// // swiaty.get(level).getQuesty().get(nrQesta).getHeroes()
-		// // .add(new SpineActor(batch, sr, shpr, "characters/goral", true,
-		// // 2));
-		// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0).setPosition(100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0));
-		// }
-		// // przeciwnikow
-		// if (swiaty.get(level).getQuesty().get(nrQesta).getEnemys().size > 0)
-		// {
-		// swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).setPosition(1100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0));
-		// } else {
-		// // dodaj przeciwnika jesli go nie ma
-		// // swiaty.get(level).getQuesty().get(nrQesta).getEnemys()
-		// // .add(new SpineActor(batch, sr, shpr, "characters/owca", false,
-		// // 20));
-		// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0).setPosition(100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(0).getHeroes().get(0));
-		// }
-		// // ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-	}
-
-	public void uzupelnij() {
-		// // ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-		// // TUTAJ SIE USTAWIA TEZ GAMEPLAY
-		//
-		// // dodaj do stage postacie dla wybranego questa
-		// // bohatera
-		// if (swiaty.get(level).getQuesty().get(nrQesta).getHeroes().size > 0)
-		// {
-		// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0).setPosition(100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0));
-		// } else {
-		// // dodaj herosa jesli go nie ma
-		// // swiaty.get(level).getQuesty().get(nrQesta).getHeroes()
-		// // .add(new SpineActor(batch, sr, shpr, "characters/goral", true,
-		// // 2));
-		// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0).setPosition(100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0));
-		// }
-		// // przeciwnikow
-		// if (swiaty.get(level).getQuesty().get(nrQesta).getEnemys().size > 0)
-		// {
-		// swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).setPosition(1100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0));
-		// } else {
-		// // dodaj przeciwnika jesli go nie ma
-		// // swiaty.get(level).getQuesty().get(nrQesta).getEnemys()
-		// // .add(new SpineActor(batch, sr, shpr, "characters/owca", false,
-		// // 20));
-		// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0).setPosition(100,
-		// 180);
-		// stageCharacters.addActor(swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0));
-		// }
-		// // ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-	}
-
 	public void fadeOutArena() {
 		System.out.println("fade out arena");
 		// wyjeb kostki
@@ -1012,9 +913,6 @@ public class Gamescreen implements Screen {
 				// losuj czy losowac dalej czy atakowac
 				int random = MathUtils.random(0, 1);
 				if (random == 0 && game.player.playerHp > pulaPrzeciwnika) {
-					// if (random == 0 &&
-					// swiaty.get(level).getQuesty().get(nrQesta).getHeroes().get(0)
-					// .getHp() > getPulaPrzeciwnika()) {
 					// System.out.println("...I LOSUJE DALEJ");
 					enemyOne = false;
 					enemyTwo = false;
@@ -1033,23 +931,6 @@ public class Gamescreen implements Screen {
 									moveTo(enemys.peek().getX() - 1000, enemys.peek().getY(), 0.5f,
 											Interpolation.circle),
 									moveTo(1100, enemys.peek().getY(), 0.5f, Interpolation.fade)));
-
-					// swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).getState().setAnimation(0,
-					// "atak", false);
-					//
-					// swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).getState().addAnimation(0,
-					// "idle", true, 0);
-					//
-					// swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).addAction(sequence(
-					// moveTo(swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).getX()
-					// - 1000,
-					// swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).getY(),
-					// 0.5f,
-					// Interpolation.circle),
-					// moveTo(1100,
-					// swiaty.get(level).getQuesty().get(nrQesta).getEnemys().get(0).getY(),
-					// 0.5f, Interpolation.fade)));
-					//
 
 					// odejmij punkty graczowi (narazie tylko pierwszemu)
 					game.player.playerHp = game.player.playerHp - pulaPrzeciwnika;
