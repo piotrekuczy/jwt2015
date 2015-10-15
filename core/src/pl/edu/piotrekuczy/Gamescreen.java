@@ -175,7 +175,7 @@ public class Gamescreen implements Screen {
 		playerIcon.setPosition(-400, 180);
 		stageCharacters.addActor(playerIcon);
 
-		enemys = new Array<SpineActor>();
+		
 
 		generujEnemys();
 
@@ -512,6 +512,7 @@ public class Gamescreen implements Screen {
 
 		game.player.playerHp = game.initialHp;
 		playerIcon.setHp(game.player.playerHp);
+//		generujEnemys();
 		title.setClicked(false);
 		currentState = GameState.TITLE;
 		resetMapa();
@@ -519,6 +520,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void fadeOutTitle(float delta) {
+		level =  MathUtils.random(0, 3);
 		// System.out.println("fade out title");
 		// hide title
 		title.addAction(moveTo(200, 900, 1.0f, Interpolation.fade));
@@ -613,12 +615,13 @@ public class Gamescreen implements Screen {
 
 		// gameover, zapraklo hp playerowi
 		if (game.player.playerHp <= 0) {
+//			killEnemy();
 			fadeOutArena();
 		}
 
 		// zabiles wszystkie enemysy
 		if (enemys.size <= 0) {
-			generujEnemys();
+//			generujEnemys();
 			fadeOutArena();
 		}
 
@@ -699,7 +702,10 @@ public class Gamescreen implements Screen {
 				enemys.get(i).remove();
 				enemys.removeIndex(i);
 				if (enemys.size > 0) {
-
+					if(enemys.size>=45){
+						game.player.playerHp = game.player.playerHp + 10;
+						playerIcon.setHp(game.player.playerHp);
+					}
 					showEnemy();
 				}
 			}
@@ -707,6 +713,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void generujEnemys() {
+		enemys = new Array<SpineActor>();
 		// -------------------------------------------------- VVVVVVVVVVVVV
 		// generowanie przeciwnikow
 

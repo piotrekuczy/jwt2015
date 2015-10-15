@@ -9,7 +9,7 @@ public class Jamwteatrze extends Game {
 	
 	public static Player player;
 	
-	public static int initialHp = 35;
+	public static int initialHp = 5;
 
 	@Override
 	public void create() {
