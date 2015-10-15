@@ -42,6 +42,8 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class Gamescreen implements Screen {
 
+	private Kowadlo kowadlo;
+
 	private SpineActor playerIcon;
 	private Array<SpineActor> enemys;
 
@@ -67,6 +69,8 @@ public class Gamescreen implements Screen {
 	OrthographicCamera camera;
 	Viewport viewport;
 	Boolean fullscreen = false;
+
+	// Sprite kowadlo;
 
 	// stage
 	Stage stage, stageCharacters;
@@ -110,7 +114,7 @@ public class Gamescreen implements Screen {
 	// gui
 
 	BitmapFont font;
-	Texture scena, panel, swiat02tlo, swiat00tlo, swiat01tlo, swiat03tlo, atakujTex;
+	Texture scena, panel, swiat02tlo, swiat00tlo, swiat01tlo, swiat03tlo, atakujTex, kowadloTex;
 	SpineButton title, mapa;
 	boolean pozwolSchowac = false;
 	ImageButton atakujButton;
@@ -168,6 +172,7 @@ public class Gamescreen implements Screen {
 
 		stage = new Stage(viewport, batch);
 		stageCharacters = new Stage(viewport, batch);
+
 		Gdx.input.setInputProcessor(stage);
 
 		// ----------------- DEKLARACJE
@@ -176,8 +181,6 @@ public class Gamescreen implements Screen {
 
 		playerIcon.setPosition(-400, 180);
 		stageCharacters.addActor(playerIcon);
-
-		
 
 		generujEnemys();
 
@@ -223,6 +226,12 @@ public class Gamescreen implements Screen {
 
 		swiat03tlo = Assets.manager.get(Assets.swiat03tlo, Texture.class);
 		swiat03tlo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
+		kowadloTex = Assets.manager.get(Assets.kowadloTex, Texture.class);
+		kowadloTex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
+		// kowadlo = new Sprite(kowadloTex);
+		// kowadlo.setPosition(100, 100);
 
 		// DICES
 
@@ -516,7 +525,7 @@ public class Gamescreen implements Screen {
 
 		game.player.playerHp = game.initialHp;
 		playerIcon.setHp(game.player.playerHp);
-//		generujEnemys();
+		// generujEnemys();
 		title.setClicked(false);
 		currentState = GameState.TITLE;
 		resetMapa();
@@ -525,7 +534,7 @@ public class Gamescreen implements Screen {
 
 	public void fadeOutTitle(float delta) {
 		game.getBee().play(0.6f);
-		level =  MathUtils.random(0, 3);
+		level = MathUtils.random(0, 3);
 		// System.out.println("fade out title");
 		// hide title
 		title.addAction(moveTo(200, 900, 1.0f, Interpolation.fade));
@@ -618,15 +627,23 @@ public class Gamescreen implements Screen {
 
 	public void updateArena(float delta) {
 
+		// kowadlo
+		if (kowadlo.isDropped() && kowadlo.getY() == 190) {
+			
+			enemys.peek().setDeleted(true);
+			kowadlo.setPosition(1050, 900);
+			kowadlo.setDropped(false);
+		}
+
 		// gameover, zapraklo hp playerowi
 		if (game.player.playerHp <= 0) {
-//			killEnemy();
+			// killEnemy();
 			fadeOutArena();
 		}
 
 		// zabiles wszystkie enemysy
 		if (enemys.size <= 0) {
-//			generujEnemys();
+			// generujEnemys();
 			fadeOutArena();
 		}
 
@@ -696,6 +713,7 @@ public class Gamescreen implements Screen {
 		}
 		// status przeciwnikow
 		font.draw(batch, enemys.size + "", 600, 700, 50, Align.center, false);
+		// kowadlo.draw(batch);
 		batch.end();
 		stage.act(delta);
 		stage.draw();
@@ -707,7 +725,7 @@ public class Gamescreen implements Screen {
 				enemys.get(i).remove();
 				enemys.removeIndex(i);
 				if (enemys.size > 0) {
-					if(enemys.size>=45){
+					if (enemys.size >= 45) {
 						game.player.playerHp = game.player.playerHp + 10;
 						playerIcon.setHp(game.player.playerHp);
 					}
@@ -727,13 +745,13 @@ public class Gamescreen implements Screen {
 			// losuj jaki potworek
 			int random = MathUtils.random(0, 1);
 			if (random == 0) {
-//				enemys.add(new SpineActor(batch, sr, shpr, "characters/ufo", false, 2));
-				 enemys.add(new SpineActor(batch, sr, shpr, "characters/ufo",
-				 false, 10 + (i * 5)));
+				// enemys.add(new SpineActor(batch, sr, shpr, "characters/ufo",
+				// false, 2));
+				enemys.add(new SpineActor(batch, sr, shpr, "characters/ufo", false, 10 + (i * 5)));
 			} else {
-//				enemys.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 2));
-				 enemys.add(new SpineActor(batch, sr, shpr, "characters/owca",
-				 false, 10 + (i * 5)));
+				// enemys.add(new SpineActor(batch, sr, shpr, "characters/owca",
+				// false, 2));
+				enemys.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 10 + (i * 5)));
 			}
 		}
 		// odwrocenie tablicy zeby najsbalsi byli na jej koncu (czyli na
@@ -747,6 +765,9 @@ public class Gamescreen implements Screen {
 
 		// -------------------------------------------------- VVVVVVVVVVVVV
 		// generowanie przeciwnikow
+		kowadlo = new Kowadlo(this);
+		kowadlo.setPosition(1050, 900);
+		stage.addActor(kowadlo);
 	}
 
 	@Override
@@ -765,6 +786,7 @@ public class Gamescreen implements Screen {
 		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		gamestates();
+
 	}
 
 	@Override
@@ -1044,7 +1066,17 @@ public class Gamescreen implements Screen {
 
 	}
 
+	public void dropKowadlo() {
+		if (!kowadlo.isDropped()) {
+			kowadlo.setDropped(true);
+			game.getBee().play(0.6f);
+			System.out.println("kowadlo dropped!");
+			kowadlo.addAction(moveTo(1050, 190, 0.7f, Interpolation.bounceOut));
+		}
+	}
+
 	private void cameraInput() {
+		
 		if (Gdx.input.isKeyPressed(Input.Keys.TAB)) {
 			fullscreen = !fullscreen;
 			if (fullscreen) {
@@ -1054,9 +1086,10 @@ public class Gamescreen implements Screen {
 				Gdx.graphics.setDisplayMode(1280, 720, false);
 			}
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
+			dropKowadlo();
 			// camera.zoom += 0.02;
-			kotaraState.setAnimation(0, "close", false);
+			// kotaraState.setAnimation(0, "close", false);
 		}
 		// if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
 		// camera.zoom -= 0.02;

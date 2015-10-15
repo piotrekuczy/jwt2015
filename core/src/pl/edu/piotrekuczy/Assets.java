@@ -31,6 +31,7 @@ public class Assets {
 	 public static final String swiat01tlo = "swiaty/tlo02.jpg";
 	 public static final String swiat02tlo = "swiaty/tlo03.jpg";
 	 public static final String swiat03tlo = "swiaty/tlo04.jpg";
+	 public static final String kowadloTex = "bitmaps/kowadlo.png";
 	 
 	// // BACKGROUND
 	// public static final String backgroundChecker =
@@ -80,6 +81,7 @@ public class Assets {
 		 manager.load(swiat01tlo, Texture.class);
 		 manager.load(swiat02tlo, Texture.class);
 		 manager.load(swiat03tlo, Texture.class);
+		 manager.load(kowadloTex, Texture.class);
 		 
 		// manager.load(uiskinAtlas, TextureAtlas.class);
 		// manager.load(backgroundChecker, Texture.class);

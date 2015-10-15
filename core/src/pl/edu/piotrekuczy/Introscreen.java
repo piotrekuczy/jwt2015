@@ -68,6 +68,7 @@ public class Introscreen implements Screen {
 
 	@Override
 	public void show() {
+		
 		System.out.println("jwt intro screen show method");
 		toTheEnd = false;
 		System.out.println("show method of menuscreen");
