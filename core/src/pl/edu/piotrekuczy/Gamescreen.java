@@ -375,6 +375,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void atakuj() {
+		game.getFight().play(0.4f);
 		// animacja ataku i powrot do idle
 
 		playerIcon.getState().setAnimation(0, "atak", false);
@@ -475,6 +476,7 @@ public class Gamescreen implements Screen {
 
 		if (!mapa.isClicked() && pozwolSchowac) {
 			mapa.setClicked(true);
+			game.getBee().play(0.6f);
 			// schowaj mape
 			mapa.addAction(moveTo(mapaX, -900, 1.0f, Interpolation.fade));
 			// otworz kotare
@@ -522,6 +524,7 @@ public class Gamescreen implements Screen {
 	}
 
 	public void fadeOutTitle(float delta) {
+		game.getBee().play(0.6f);
 		level =  MathUtils.random(0, 3);
 		// System.out.println("fade out title");
 		// hide title
@@ -959,6 +962,7 @@ public class Gamescreen implements Screen {
 				} else {
 					// System.out.println("...I ATAKUJE!");
 
+					game.getAlien().play(0.4f);
 					// animacja ataku i powrot do idle
 
 					enemys.peek().getState().setAnimation(0, "atak", false);

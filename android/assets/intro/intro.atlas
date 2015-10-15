@@ -1,0 +1,52 @@
+
+intro.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3
+  rotate: false
+  xy: 2, 2
+  size: 641, 655
+  orig: 641, 655
+  offset: 0, 0
+  index: -1
+
+intro2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 2, 2
+  size: 641, 654
+  orig: 641, 654
+  offset: 0, 0
+  index: -1
+
+intro3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2
+  rotate: false
+  xy: 2, 2
+  size: 634, 648
+  orig: 634, 648
+  offset: 0, 0
+  index: -1
+
+intro4.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+4
+  rotate: false
+  xy: 2, 2
+  size: 634, 647
+  orig: 634, 647
+  offset: 0, 0
+  index: -1
