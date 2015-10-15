@@ -6,9 +6,15 @@ public class Jamwteatrze extends Game {
 
 	Introscreen introscreen;
 	Gamescreen gamescreen;
+	
+	public static Player player;
+	
+	public static int initialHp = 5;
 
 	@Override
 	public void create() {
+		
+		player = new Player(initialHp);
 
 		Assets.load();
 		Assets.manager.finishLoading();
