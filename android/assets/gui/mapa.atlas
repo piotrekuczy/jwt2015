@@ -4,52 +4,52 @@ size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+krakow
+  rotate: false
+  xy: 2, 328
+  size: 626, 585
+  orig: 626, 585
+  offset: 0, 0
+  index: -1
 lewe
   rotate: true
-  xy: 2, 125
-  size: 129, 620
-  orig: 129, 620
+  xy: 2, 151
+  size: 175, 626
+  orig: 175, 626
   offset: 0, 0
   index: -1
 prawe
   rotate: false
-  xy: 766, 265
-  size: 125, 574
-  orig: 125, 574
+  xy: 630, 287
+  size: 175, 626
+  orig: 175, 626
   offset: 0, 0
   index: -1
-srodek
-  rotate: false
-  xy: 2, 256
-  size: 762, 583
-  orig: 762, 583
-  offset: 0, 0
-  index: -1
-tabliczka1
+tabliczk1
   rotate: false
   xy: 2, 2
-  size: 139, 121
-  orig: 139, 121
-  offset: 0, 0
-  index: -1
-tabliczka2
-  rotate: false
-  xy: 624, 133
-  size: 139, 121
-  orig: 139, 121
+  size: 169, 147
+  orig: 169, 147
   offset: 0, 0
   index: -1
 tabliczka4
   rotate: false
-  xy: 624, 133
-  size: 139, 121
-  orig: 139, 121
+  xy: 2, 2
+  size: 169, 147
+  orig: 169, 147
   offset: 0, 0
   index: -1
 tabliczka3
   rotate: false
-  xy: 624, 133
-  size: 139, 121
-  orig: 139, 121
+  xy: 2, 2
+  size: 169, 147
+  orig: 169, 147
+  offset: 0, 0
+  index: -1
+tabliczka2
+  rotate: false
+  xy: 2, 2
+  size: 169, 147
+  orig: 169, 147
   offset: 0, 0
   index: -1

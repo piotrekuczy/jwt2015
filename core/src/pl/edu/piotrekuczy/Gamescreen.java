@@ -134,6 +134,8 @@ public class Gamescreen implements Screen {
 	Animation mapaIdleAnimation;
 	AnimationState mapaState;
 	float mapaAnimationTime = 0;
+	float mapaX = 220;
+	float mapaY = 60;
 
 	// SpineActor spineact;
 
@@ -301,7 +303,7 @@ public class Gamescreen implements Screen {
 		// mapa
 
 		mapa = new SpineButton(batch, sr, "gui/mapa", "show0", 100, 0, 800, 600);
-		mapa.setPosition(250, -900);
+		mapa.setPosition(mapaX, -900);
 		// mapa.debug();
 		mapa.setClicked(false);
 
@@ -474,7 +476,7 @@ public class Gamescreen implements Screen {
 		if (!mapa.isClicked() && pozwolSchowac) {
 			mapa.setClicked(true);
 			// schowaj mape
-			mapa.addAction(moveTo(250, -900, 1.0f, Interpolation.fade));
+			mapa.addAction(moveTo(mapaX, -900, 1.0f, Interpolation.fade));
 			// otworz kotare
 			kotaraState.setAnimation(0, "open", false);
 
@@ -527,7 +529,7 @@ public class Gamescreen implements Screen {
 		// show map
 		// show in animation (repeat 0)
 		mapa.getState().setAnimation(0, "in", false);
-		mapa.addAction(sequence(moveTo(250, 100, 2.0f, Interpolation.bounceOut), run(new Runnable() {
+		mapa.addAction(sequence(moveTo(mapaX, mapaY, 2.0f, Interpolation.bounceOut), run(new Runnable() {
 			public void run() {
 				// after action show idle animation based on actual players
 				// level!
