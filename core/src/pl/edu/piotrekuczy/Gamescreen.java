@@ -177,19 +177,8 @@ public class Gamescreen implements Screen {
 
 		enemys = new Array<SpineActor>();
 
-		// generowanie przeciwnikow
+		generujEnemys();
 
-		for (int i = 0; i < 5; i++) {
-			enemys.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 10 + (i * 5)));
-		}
-		// odwrocenie tablicy zeby najsbalsi byli na jej koncu (czyli na
-		// poczatku gry)
-		enemys.reverse();
-
-		// System.out.println("stan enemys po ich wygenerowaniu");
-		for (SpineActor enemy : enemys) {
-			// System.out.println("enemy hp = " + enemy.getHp());
-		}
 		// atakuj button
 
 		atakujTex = Assets.manager.get(Assets.atakuj, Texture.class);
@@ -445,8 +434,11 @@ public class Gamescreen implements Screen {
 		}
 		// pokaz playerIcon / BOHATERA
 		showPlayerIcon();
-		// pokaz enemysa
-		showEnemy();
+		if (enemys.size > 0) {
+			// pokaz enemysa
+			showEnemy();
+
+		}
 	}
 
 	@Override
@@ -624,6 +616,12 @@ public class Gamescreen implements Screen {
 			fadeOutArena();
 		}
 
+		// zabiles wszystkie enemysy
+		if (enemys.size <= 0) {
+			generujEnemys();
+			fadeOutArena();
+		}
+
 		batch.begin();
 		switch (level) {
 		case 0:
@@ -644,15 +642,6 @@ public class Gamescreen implements Screen {
 		font.draw(batch, pulaGracza + "", 50, 70, 50, Align.center, false);
 		font.draw(batch, "total: ", 1160, 100);
 		font.draw(batch, pulaPrzeciwnika + "", 1175, 70, 50, Align.center, false);
-
-		// actual hp
-		font.draw(batch, game.player.playerHp + "", playerIcon.getX() - 25, playerIcon.getY() + 260, 50,
-				Align.center, false);
-
-		if (enemys.size > 0) {
-			font.draw(batch, enemys.peek().getHp() + "", enemys.peek().getX() - 15, enemys.peek().getY() + 260);
-		}
-
 		batch.end();
 
 		if (heroTurn) {
@@ -663,6 +652,17 @@ public class Gamescreen implements Screen {
 
 		stageCharacters.act(delta);
 		stageCharacters.draw();
+
+		batch.begin();
+
+		// wypisywanie actual hp
+		font.draw(batch, game.player.playerHp + "", playerIcon.getX() - 25, playerIcon.getY() + 260, 50,
+				Align.center, false);
+
+		if (enemys.size > 0) {
+			font.draw(batch, enemys.peek().getHp() + "", enemys.peek().getX() - 15, enemys.peek().getY() + 260);
+		}
+		batch.end();
 
 		// rysowanie paskow hp
 		shpr.begin(ShapeType.Filled);
@@ -686,17 +686,11 @@ public class Gamescreen implements Screen {
 		} else {
 			font.draw(batch, "TURA OBCYCH", 1050, 700);
 		}
+		// status przeciwnikow
+		font.draw(batch, enemys.size + "", 600, 700, 50, Align.center, false);
 		batch.end();
 		stage.act(delta);
 		stage.draw();
-
-		// // check for VICTORY!
-		// if (swiaty.get(level).getQuesty().get(nrQesta).getEnemys().size <= 0)
-		// {
-		// System.out.println("VICTORY . odpal nastepny quest!");
-		// nrQesta++;
-		// resetujQuest();
-		// }
 
 		// check for deleting enemy from quest
 
@@ -704,9 +698,43 @@ public class Gamescreen implements Screen {
 			if (enemys.get(i).isDeleted()) {
 				enemys.get(i).remove();
 				enemys.removeIndex(i);
-				showEnemy();
+				if (enemys.size > 0) {
+
+					showEnemy();
+				}
 			}
 		}
+	}
+
+	public void generujEnemys() {
+		// -------------------------------------------------- VVVVVVVVVVVVV
+		// generowanie przeciwnikow
+
+		for (int i = 0; i < 50; i++) {
+
+			// losuj jaki potworek
+			int random = MathUtils.random(0, 1);
+			if (random == 0) {
+//				enemys.add(new SpineActor(batch, sr, shpr, "characters/ufo", false, 2));
+				 enemys.add(new SpineActor(batch, sr, shpr, "characters/ufo",
+				 false, 10 + (i * 5)));
+			} else {
+//				enemys.add(new SpineActor(batch, sr, shpr, "characters/owca", false, 2));
+				 enemys.add(new SpineActor(batch, sr, shpr, "characters/owca",
+				 false, 10 + (i * 5)));
+			}
+		}
+		// odwrocenie tablicy zeby najsbalsi byli na jej koncu (czyli na
+		// poczatku gry)
+		enemys.reverse();
+
+		// System.out.println("stan enemys po ich wygenerowaniu");
+		for (SpineActor enemy : enemys) {
+			// System.out.println("enemy hp = " + enemy.getHp());
+		}
+
+		// -------------------------------------------------- VVVVVVVVVVVVV
+		// generowanie przeciwnikow
 	}
 
 	@Override

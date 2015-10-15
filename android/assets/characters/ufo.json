@@ -1,0 +1,182 @@
+{
+"skeleton": { "hash": "MzPiU6dkLehcw/5JPCzbB9CbEVI", "spine": "2.1.27", "width": 394.26, "height": 289.94, "images": "./images/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "statek", "parent": "root", "length": 201.93, "x": -12.29, "y": 51.63, "rotation": 84.84 },
+	{ "name": "kolo", "parent": "statek", "length": 22.88, "x": 97.67, "y": 5.64, "rotation": 0.9 },
+	{ "name": "lewe_dzialo", "parent": "statek", "length": 40.32, "x": 2.08, "y": 62.66, "rotation": 121.82 },
+	{ "name": "prawe_dzialo", "parent": "statek", "length": 41.05, "x": -4.85, "y": 20.02, "rotation": 154.45 },
+	{
+		"name": "strzal",
+		"parent": "statek",
+		"length": 211.6,
+		"x": -11.46,
+		"y": 120.32,
+		"scaleX": 0.564,
+		"scaleY": 0.544,
+		"rotation": 92.36,
+		"color": "9c9c9c00"
+	},
+	{ "name": "twarz", "parent": "statek", "length": 68.81, "x": 95.31, "y": -9.1, "rotation": 7.62 },
+	{ "name": "reka", "parent": "twarz", "length": 14.85, "x": -2.63, "y": -14, "rotation": 2.7 }
+],
+"slots": [
+	{ "name": "kaspua", "bone": "statek", "attachment": "kaspuła" },
+	{ "name": "twarz", "bone": "twarz", "attachment": "twarz" },
+	{ "name": "nos", "bone": "twarz", "attachment": "nos" },
+	{ "name": "kolo", "bone": "kolo", "attachment": "kolo" },
+	{ "name": "reka", "bone": "reka", "attachment": "reka" },
+	{ "name": "statek", "bone": "statek", "attachment": "statek" },
+	{ "name": "lewe_dzialo", "bone": "lewe_dzialo", "attachment": "lewe_dzialo" },
+	{ "name": "prawe_dzialo", "bone": "prawe_dzialo", "attachment": "prawe_dzialo" },
+	{ "name": "kolka", "bone": "statek", "attachment": "kolka" },
+	{ "name": "strzal", "bone": "strzal", "attachment": "strzal" }
+],
+"skins": {
+	"default": {
+		"kaspua": {
+			"kaspuła": { "x": 140.51, "y": 0.21, "rotation": -74.59, "width": 134, "height": 141 }
+		},
+		"kolka": {
+			"kolka": { "x": 45.6, "y": -12.98, "rotation": -74.59, "width": 229, "height": 55 }
+		},
+		"kolo": {
+			"kolo": { "x": 3.26, "y": 2.78, "rotation": -75.49, "width": 59, "height": 49 }
+		},
+		"lewe_dzialo": {
+			"lewe_dzialo": { "x": 19.97, "y": 0.42, "rotation": 155.55, "width": 44, "height": 30 }
+		},
+		"nos": {
+			"nos": { "x": 48.18, "y": 7.07, "rotation": -82.21, "width": 13, "height": 13 }
+		},
+		"prawe_dzialo": {
+			"prawe_dzialo": { "x": 19.75, "y": 0.07, "rotation": 138.57, "width": 39, "height": 37 }
+		},
+		"reka": {
+			"reka": { "x": 5.81, "y": -0.99, "rotation": -84.92, "width": 18, "height": 26 }
+		},
+		"statek": {
+			"statek": { "x": 52.7, "y": -10.5, "rotation": -74.59, "width": 218, "height": 130 }
+		},
+		"strzal": {
+			"strzal": { "x": 115.7, "y": 1.14, "rotation": 139.93, "width": 199, "height": 169 }
+		},
+		"twarz": {
+			"twarz": { "x": 32.01, "y": -0.18, "rotation": -82.21, "width": 77, "height": 87 }
+		}
+	}
+},
+"animations": {
+	"atak": {
+		"slots": {
+			"strzal": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2666, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffffff" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 1, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"statek": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2666, "angle": 0 },
+					{ "time": 0.4, "angle": -24.35 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.2666, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"twarz": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			},
+			"lewe_dzialo": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": -26.55 },
+					{ "time": 0.3, "angle": -25.34 },
+					{ "time": 0.5, "angle": -26.55 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"prawe_dzialo": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -56.03, "curve": "stepped" },
+					{ "time": 0.3333, "angle": -56.03 },
+					{ "time": 1, "angle": 0 }
+				]
+			},
+			"kolo": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"strzal": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 1, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"lewe_dzialo": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.6333, "angle": 17.87 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"statek": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3333, "x": 0, "y": -9.13 },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			},
+			"prawe_dzialo": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.4666, "angle": -20.16 },
+					{ "time": 1, "angle": 0 }
+				]
+			},
+			"twarz": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": 7.81 },
+					{ "time": 0.6666, "angle": -5.15 },
+					{ "time": 1, "angle": 0 }
+				]
+			},
+			"kolo": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3666, "angle": 10 },
+					{ "time": 0.6666, "angle": -20.39 },
+					{ "time": 1, "angle": 0 }
+				]
+			}
+		}
+	}
+}
+}

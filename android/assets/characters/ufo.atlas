@@ -1,0 +1,76 @@
+
+ufo.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kaspuła
+  rotate: true
+  xy: 305, 118
+  size: 134, 141
+  orig: 134, 141
+  offset: 0, 0
+  index: -1
+kolka
+  rotate: true
+  xy: 448, 23
+  size: 229, 55
+  orig: 229, 55
+  offset: 0, 0
+  index: -1
+kolo
+  rotate: false
+  xy: 2, 2
+  size: 59, 49
+  orig: 59, 49
+  offset: 0, 0
+  index: -1
+lewe_dzialo
+  rotate: true
+  xy: 102, 7
+  size: 44, 30
+  orig: 44, 30
+  offset: 0, 0
+  index: -1
+nos
+  rotate: false
+  xy: 134, 10
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+prawe_dzialo
+  rotate: true
+  xy: 63, 12
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1
+reka
+  rotate: false
+  xy: 134, 25
+  size: 18, 26
+  orig: 18, 26
+  offset: 0, 0
+  index: -1
+statek
+  rotate: true
+  xy: 173, 34
+  size: 218, 130
+  orig: 218, 130
+  offset: 0, 0
+  index: -1
+strzal
+  rotate: true
+  xy: 2, 53
+  size: 199, 169
+  orig: 199, 169
+  offset: 0, 0
+  index: -1
+twarz
+  rotate: false
+  xy: 305, 29
+  size: 77, 87
+  orig: 77, 87
+  offset: 0, 0
+  index: -1
